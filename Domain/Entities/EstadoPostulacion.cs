@@ -8,5 +8,9 @@ namespace Domain.Entities
 {
     public class TipoEstadoPostulacion
     {
+        public int EstadoId { get; set; }
+        public string Descripcion { get; set; }
+
+        public Postulacion Postulacion { get; set; }
     }
 }
