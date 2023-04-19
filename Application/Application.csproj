@@ -7,12 +7,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Interfaces\Querys\**" />
+    <EmbeddedResource Remove="Interfaces\Querys\**" />
+    <None Remove="Interfaces\Querys\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\Querys\" />
+    <Folder Include="Interfaces\ICategoria\" />
+    <Folder Include="Interfaces\IEstadoPostulacion\" />
+    <Folder Include="Interfaces\IPostulacion\" />
+    <Folder Include="Interfaces\IOfertaCategoria\" />
+    <Folder Include="Interfaces\IOferta\" />
     <Folder Include="Response\" />
+    <Folder Include="UseCase\Services\SPostulacion\" />
+    <Folder Include="UseCase\Services\SOfertaCategoria\" />
+    <Folder Include="UseCase\Services\SOferta\" />
+    <Folder Include="UseCase\Services\SEstadoPostulacion\" />
+    <Folder Include="UseCase\Services\SCategoria\" />
   </ItemGroup>
 
 </Project>
