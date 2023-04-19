@@ -25,6 +25,8 @@
   <ItemGroup>
     <Folder Include="Command\" />
     <Folder Include="Query\" />
+    <Folder Include="Persistence\" />
+
   </ItemGroup>
 
 </Project>
