@@ -14,7 +14,7 @@ namespace Domain.Entities
         public Guid OfertaId { get; set; }
         public DateTime Fecha { get; set; }
 
-
+        public Oferta Oferta { get; set; }
         public TipoEstadoPostulacion TipoEstadoPostulacion { get; set; }
     }
 }
