@@ -1,0 +1,31 @@
+﻿[
+
+  {
+    "TipoEstadoPostulacionId": 
+    1,
+    "Descripcion": 
+    "Postulado"
+  },
+
+  {
+    "TipoEstadoPostulacionId": 
+    2,
+    "Descripcion": 
+    "CV Visto"
+  },
+
+  {
+    "TipoEstadoPostulacionId": 
+    3,
+    "Descripcion": 
+    "En evaluación"
+  },
+
+  {
+    "TipoEstadoPostulacionId": 
+    4,
+    "Descripcion": 
+    "Finalista"
+  }
+
+]

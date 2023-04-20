@@ -24,12 +24,17 @@ namespace Infrastructure.Persistance
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Precargar datos de Categoria desde el archivo JSON
+            // Obtener la ruta de los Precargar datos de Categoria desde el archivo JSON
             string directorioActual = Directory.GetCurrentDirectory();
-            string rutaModficada = directorioActual.Replace("Labu", "");
-            string rutaArchivoJson = Path.Combine(directorioActual, "Infrastructure", "Persistence", "CategoriaData.json");
-            var categoriaJson = File.ReadAllText(rutaArchivoJson);
+            directorioActual = directorioActual.Substring(0, directorioActual.Length - 5);
+
+            string rutaArchivoUnoJson = Path.Combine(directorioActual, "Infrastructure", "Persistence", "CategoriaData.json");
+            var categoriaJson = File.ReadAllText(rutaArchivoUnoJson);
             var categorias = JsonConvert.DeserializeObject<List<Categoria>>(categoriaJson);
+
+            string rutaArchivoDosJson = Path.Combine(directorioActual, "Infrastructure", "Persistence", "TipoEstadoPostulacionData.json");
+            var tipoEstadoJson = File.ReadAllText(rutaArchivoDosJson);
+            var tipoEstados = JsonConvert.DeserializeObject<List<TipoEstadoPostulacion>>(tipoEstadoJson);
 
             modelBuilder.Entity<Oferta>(entity =>
             {
@@ -111,177 +116,9 @@ namespace Infrastructure.Persistance
                       .HasForeignKey(ci => ci.CategoriaId)
                       .OnDelete(DeleteBehavior.Cascade);
 
-                entity.HasData(
-
-                       categorias);
-                        
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 1,
-                        //    Descripcion = "Tecnología"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 2,
-                        //    Descripcion = "Marketing"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 3,
-                        //    Descripcion = "Diseño"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 4,
-                        //    Descripcion = "Administración"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 5,
-                        //    Descripcion = "Finanzas"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 6,
-                        //    Descripcion = "Recursos humanos"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 7,
-                        //    Descripcion = "Ventas"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 8,
-                        //    Descripcion = "Servicio al cliente"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 9,
-                        //    Descripcion = "Logística"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 10,
-                        //    Descripcion = "Producción"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 11,
-                        //    Descripcion = "Educación"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 12,
-                        //    Descripcion = "Salud"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 13,
-                        //    Descripcion = "Investigación"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 14,
-                        //    Descripcion = "Arte y cultura"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 15,
-                        //    Descripcion = "Medios de comunicación"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 16,
-                        //    Descripcion = "Derecho"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 17,
-                        //    Descripcion = "Ingeniería"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 18,
-                        //    Descripcion = "Ingeniería"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 19,
-                        //    Descripcion = "Agricultura"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 20,
-                        //    Descripcion = "Medio ambiente"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 21,
-                        //    Descripcion = "Medio ambiente"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 22,
-                        //    Descripcion = "Gastronomía"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 23,
-                        //    Descripcion = "Gestión de proyectos"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 24,
-                        //    Descripcion = "Consultoría"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 25,
-                        //    Descripcion = "Análisis de datos"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 26,
-                        //    Descripcion = "Química"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 27,
-                        //    Descripcion = "Medicina"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 28,
-                        //    Descripcion = "Enfermería"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 29,
-                        //    Descripcion = "Psicología"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 30,
-                        //    Descripcion = "Trabajo social"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 31,
-                        //    Descripcion = "Arquitectura"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 32,
-                        //    Descripcion = "Fotografía"
-                        //},
-                        //new Categoria
-                        //{
-                        //    CategoriaId = 33,
-                        //    Descripcion = "Estadística"
-                        //}
-
+                entity.HasData(categorias);
             });
+
 
             modelBuilder.Entity<Postulacion>(entity =>
             {
@@ -290,7 +127,7 @@ namespace Infrastructure.Persistance
                 entity.Property(pi => pi.PostulacionId)
                       .ValueGeneratedOnAdd()
                       .IsRequired();
-                entity.Property(ei => ei.EstadoId)
+                entity.Property(ei => ei.TipoEstadoPostulacionId)
                       .IsRequired();
                 entity.Property(ai => ai.AspiranteId)
                       .IsRequired();
@@ -306,42 +143,21 @@ namespace Infrastructure.Persistance
 
                 entity.HasOne<TipoEstadoPostulacion>(tep => tep.TipoEstadoPostulacion)
                       .WithOne(p => p.Postulacion)
-                      .HasForeignKey<Postulacion>(ei => ei.EstadoId);
+                      .HasForeignKey<Postulacion>(ei => ei.TipoEstadoPostulacionId);
             });
 
             modelBuilder.Entity<TipoEstadoPostulacion>(entity =>
             {
                 entity.ToTable("TipoEstadoPostulacion");
-                entity.HasKey(ei => ei.EstadoId);
-                entity.Property(ei => ei.EstadoId)
+                entity.HasKey(ei => ei.TipoEstadoPostulacionId);
+                entity.Property(ei => ei.TipoEstadoPostulacionId)
                       .ValueGeneratedOnAdd()
                       .IsRequired();
                 entity.Property(d => d.Descripcion)
                      .IsRequired()
                      .HasMaxLength(50);
 
-                entity.HasData(
-                        new TipoEstadoPostulacion
-                        {
-                            EstadoId = 1,
-                            Descripcion = "Postulado"
-                        },
-                        new TipoEstadoPostulacion
-                        {
-                            EstadoId = 2,
-                            Descripcion = "CV Visto"
-                        },
-                        new TipoEstadoPostulacion
-                        {
-                            EstadoId = 3,
-                            Descripcion = "En evaluación"
-                        },
-                        new TipoEstadoPostulacion
-                        {
-                            EstadoId = 4,
-                            Descripcion = "Finalista"
-                        }
-                    );
+                entity.HasData(tipoEstados);
             });
         }
 
