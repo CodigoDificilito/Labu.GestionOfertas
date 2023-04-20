@@ -1,0 +1,267 @@
+﻿[
+  
+  
+  {
+    "CategoriaId": 
+    1,
+    "Descripcion": 
+    "Tecnología"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    2,
+    "Descripcion": 
+    "Marketing"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    3,
+    "Descripcion": 
+    "Diseño"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    4,
+    "Descripcion": 
+    "Administración"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    5,
+    "Descripcion": 
+    "Finanzas"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    6,
+    "Descripcion": 
+    "Recursos humanos"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    7,
+    "Descripcion": 
+    "Ventas"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    8,
+    "Descripcion": 
+    "Servicio al cliente"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    9,
+    "Descripcion": 
+    "Logística"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    10,
+    "Descripcion": 
+    "Producción"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    11,
+    "Descripcion": 
+    "Educación"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    12,
+    "Descripcion": 
+    "Salud"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    13,
+    "Descripcion": 
+    "Investigación"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    14,
+    "Descripcion": 
+    "Arte y cultura"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    15,
+    "Descripcion": 
+    "Medios de comunicación"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    16,
+    "Descripcion": 
+    "Derecho"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    17,
+    "Descripcion": 
+    "Ingeniería"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    18,
+    "Descripcion": 
+    "Ingeniería"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    19,
+    "Descripcion": 
+    "Agricultura"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    20,
+    "Descripcion": 
+    "Medio ambiente"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    21,
+    "Descripcion": 
+    "Medio ambiente"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    22,
+    "Descripcion": 
+    "Gastronomía"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    23,
+    "Descripcion": 
+    "Gestión de proyectos"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    24,
+    "Descripcion": 
+    "Consultoría"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    25,
+    "Descripcion": 
+    "Análisis de datos"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    26,
+    "Descripcion": 
+    "Química"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    27,
+    "Descripcion": 
+    "Medicina"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    28,
+    "Descripcion": 
+    "Enfermería"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    29,
+    "Descripcion": 
+    "Psicología"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    30,
+    "Descripcion": 
+    "Trabajo social"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    31,
+    "Descripcion": 
+    "Arquitectura"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    32,
+    "Descripcion": 
+    "Fotografía"
+  },
+  
+  
+  {
+    "CategoriaId": 
+    33,
+    "Descripcion": 
+    "Estadística"
+  }
+  
+]
