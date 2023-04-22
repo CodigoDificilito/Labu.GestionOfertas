@@ -36,6 +36,10 @@ namespace Infrastructure.Persistance
             var tipoEstadoJson = File.ReadAllText(rutaArchivoDosJson);
             var tipoEstados = JsonConvert.DeserializeObject<List<TipoEstadoPostulacion>>(tipoEstadoJson);
 
+            string rutaArchivoTresJson = Path.Combine(directorioActual, "Infrastructure", "Persistence", "OfertasData.json");
+            var ofertaJson = File.ReadAllText(rutaArchivoTresJson);
+            var ofertas = JsonConvert.DeserializeObject<List<Oferta>>(ofertaJson);
+
             modelBuilder.Entity<Oferta>(entity =>
             {
                 entity.ToTable("Oferta");
@@ -74,6 +78,8 @@ namespace Infrastructure.Persistance
                       .WithOne(o => o.Oferta)
                       .HasForeignKey(oi => oi.OfertaId)
                       .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasData(ofertas);
             });
 
             modelBuilder.Entity<OfertaCategoria>(entity =>
