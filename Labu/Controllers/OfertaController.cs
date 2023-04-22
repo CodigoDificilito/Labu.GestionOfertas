@@ -19,30 +19,44 @@ namespace Labu.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddOferta(AddOfertaRequest request)
+
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AddOferta(AddOfertaRequest request)
         {
-            var result = _commandServices.CreateOferta(request);
-            return new JsonResult(result);
+            var result = await _commandServices.CreateOferta(request);
+            return StatusCode(result.code, result.result);
         }
 
-        [HttpDelete]
-        public IActionResult DeleteOferta(Guid guid)
+        [HttpDelete("{id}")]
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeleteOferta(Guid id)
         {
-            var result = _commandServices.DeleteOferta(guid);
-            return new JsonResult(result);
+            var result = await _commandServices.DeleteOferta(id);
+
+            return StatusCode(result.code, result.result);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllOfertas()
-        {
-            var result = _queryServices.GetOfertas();
-            return new JsonResult(result);
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> GetAllOfertas()
+        //{
+        //    var result = _queryServices.GetOfertas();
+        //    return new JsonResult(result);
+        //}
 
-        [HttpGet]
+        [HttpGet("{titulo}")]
         public async Task<IActionResult> GetAllOfertasByTitulo(string titulo)
         {
-            var result = _queryServices.GetListOfertaByTitulo(titulo);
+            var result = await _queryServices.GetListOfertaByTitulo(titulo);
+            return new JsonResult(result);
+        }
+
+        [HttpGet("empresa/{empresaId}")]
+        public async Task<IActionResult> GetAllOfertasByEmpresaId(int empresaId)
+        {
+            var result = await _queryServices.GetListOfertaByEmpresaId(empresaId);
             return new JsonResult(result);
         }
 

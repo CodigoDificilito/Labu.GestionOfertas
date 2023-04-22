@@ -8,6 +8,11 @@ namespace Application.Interfaces.IOferta
         Task<List<Oferta>> GetListOferta();
         Oferta GetOferta(Guid ofertaId);
 
+        Task<bool> ExistOferta(Guid ofertaId);
+
         Task<List<Oferta>> GetListOfertaByTitulo(string titulo);
+
+        Task<List<Oferta>> GetListOfertaByEmpresa(int id);
+
     }
 }
