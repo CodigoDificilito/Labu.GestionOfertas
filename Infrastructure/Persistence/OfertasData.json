@@ -1,0 +1,110 @@
+﻿[
+
+
+  {
+    "OfertaId": "E058B366-F832-42DD-B001-647919FDFD66",
+    "EmpresaId": 1,
+    "Titulo": "Desarrollador .NET Junior/Ssr.",
+    "Descripcion": "Buscamos Desarrollador .NET Junior/Ssr. para sumarse a importante empresa de producto IT, líder en la creación de soluciones para el sector de salud.",
+    "Salario": 200000,
+    "AñosExperiencia": 3,
+    "Provincia": "Buenos Aires",
+    "Ciudad": "Retiro",
+    "NivelEstudios": "Universitario",
+    "Fecha": "2023-04-22 08:05:19.3749336"
+  },
+
+  {
+    "OfertaId": "F1B4F44E-05FB-4062-A247-6830964EF063",
+    "EmpresaId": 2,
+    "Titulo": "Desarrollador .NET Junior.",
+    "Descripcion": "Buscamos Desarrollador .NET Junior/Ssr. para sumarse a importante empresa de producto IT, líder en la creación de soluciones para el sector de salud.",
+    "Salario": 120000,
+    "AñosExperiencia": 1,
+    "Provincia": "Buenos Aires",
+    "Ciudad": "Quilmes",
+    "NivelEstudios": "Terciario",
+    "Fecha": "2023-03-22 08:04:50.9286762"
+  },
+
+  {
+    "OfertaId": "EE69BF0E-735F-44FF-9712-96830FDDBF3A",
+    "EmpresaId": 2,
+    "Titulo": "Analista programador/a de sistemas.",
+    "Descripcion": "Buscamos AUXLIAR DE OPERACIONES SISTEMAS.",
+    "Salario": 150000,
+    "AñosExperiencia": 1,
+    "Provincia": "Buenos Aires",
+    "Ciudad": "Moreno",
+    "NivelEstudios": "Universitario",
+    "Fecha": "2023-04-23 08:05:19.3749336"
+  },
+
+  {
+    "OfertaId": "3DA7995A-715F-40B8-8121-B2FFDEE778B0",
+    "EmpresaId": 2,
+    "Titulo": "Desarrollador SQL Server Jr/SSr",
+    "Descripcion": "uscamos Desarrollador SQL Server Junior/SSR. para sumarse a importante empresa de producto IT, líder en la creación de soluciones para el sector de salud.",
+    "Salario": 220000,
+    "AñosExperiencia": 3,
+    "Provincia": "Buenos Aires",
+    "Ciudad": "Florencion Varela",
+    "NivelEstudios": "Universitario",
+    "Fecha": "2023-05-22 12:13:20.0719537"
+  },
+
+  {
+    "OfertaId": "994EC6D1-3560-4FC6-BE23-E078DEF32527",
+    "EmpresaId": 3,
+    "Titulo": "Desarrollador Java Jr.",
+    "Descripcion": "En Ecosistemas, buscamos un Desarrollador Java Jr/Ssr para sumar al equipo de nuestro cliente, en relación directa con el mismo.",
+    "Salario": 180000,
+    "AñosExperiencia": 1,
+    "Provincia": "Buenos Aires",
+    "Ciudad": "Retiro",
+    "NivelEstudios": "Secundario",
+    "Fecha": "2023-03-22 12:11:59.9750193"
+  },
+
+  {
+    "OfertaId": "4093643C-135B-4368-ACE5-E1783DD3F0F8",
+    "EmpresaId": 3,
+    "Titulo": "Administrador de Infraestructura Ssr.",
+    "Descripcion": "En Ecosistemas estamos en la búsqueda de un Administrador de Backups Ssr/Sr para sumarse a nuestro equipo",
+    "Salario": 250000,
+    "AñosExperiencia": 3,
+    "Provincia": "Buenos Aires",
+    "Ciudad": "San Nicolas",
+    "NivelEstudios": "Terciario",
+    "Fecha": "2023-04-22 08:05:20.4466304"
+  },
+
+  {
+    "OfertaId": "8A527FD3-962A-4ABF-B18F-EFCDB6004F07",
+    "EmpresaId": 3,
+    "Titulo": "Analista Funcional Jr o Ssr.",
+    "Descripcion": "Desde Ecosistemas nos encontramos en la búsqueda de un Analista Funcional Jr/Ssr, para sumarse al equipo de nuestro cliente, empresa agropecuaria.",
+    "Salario": 200000,
+    "AñosExperiencia": 2,
+    "Provincia": "Buenos Aires",
+    "Ciudad": "Carlos Casares",
+    "NivelEstudios": "Terciario",
+    "Fecha": "2023-04-22 07:50:18.9890830"
+  },
+
+  {
+    "OfertaId": "1D394678-E0EB-4620-A1DE-F01C7768DDB3",
+    "EmpresaId": 1,
+    "Titulo": "Programador Robotista.",
+    "Descripcion": "Importante empresa Autopartista se encuentra en la búsqueda de Programador Robotista.",
+    "Salario": 200000,
+    "AñosExperiencia": 2,
+    "Provincia": "Buenos Aires",
+    "Ciudad": "Retiro",
+    "NivelEstudios": "Universitario",
+    "Fecha": "2023-04-22 10:27:32.8956499"
+  }
+
+
+
+]

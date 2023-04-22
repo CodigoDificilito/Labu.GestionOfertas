@@ -8,8 +8,11 @@
 
   <ItemGroup>
     <Compile Remove="Interfaces\Querys\**" />
+    <Compile Remove="Response\**" />
     <EmbeddedResource Remove="Interfaces\Querys\**" />
+    <EmbeddedResource Remove="Response\**" />
     <None Remove="Interfaces\Querys\**" />
+    <None Remove="Response\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,11 +24,8 @@
     <Folder Include="Interfaces\IEstadoPostulacion\" />
     <Folder Include="Interfaces\IPostulacion\" />
     <Folder Include="Interfaces\IOfertaCategoria\" />
-    <Folder Include="Interfaces\IOferta\" />
-    <Folder Include="Response\" />
     <Folder Include="UseCase\Services\SPostulacion\" />
     <Folder Include="UseCase\Services\SOfertaCategoria\" />
-    <Folder Include="UseCase\Services\SOferta\" />
     <Folder Include="UseCase\Services\SEstadoPostulacion\" />
     <Folder Include="UseCase\Services\SCategoria\" />
   </ItemGroup>
