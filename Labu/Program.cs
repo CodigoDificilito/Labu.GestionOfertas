@@ -4,6 +4,7 @@ using Infrastructure.Command;
 using Infrastructure.Persistance;
 using Infrastructure.Query;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 

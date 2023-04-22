@@ -83,5 +83,34 @@ namespace Application.UseCase.Services.SOferta
 
             return ofertaDTO;
         }
+
+        public async Task<bool> ExistOfertaById(Guid ofertaId)
+        {
+            return await _query.ExistOferta(ofertaId);
+        }
+
+        public async Task<List<OfertaDTO>> GetListOfertaByEmpresaId(int empresaId)
+        {
+            var ofertas = await _query.GetListOfertaByEmpresa(empresaId);
+            var ofertasDTO = new List<OfertaDTO>();
+
+            foreach (var c in ofertas)
+            {
+                var ofertaDTO = new OfertaDTO()
+                {
+                    EmpresaId = c.EmpresaId,
+                    Titulo = c.Titulo,
+                    Descripcion = c.Descripcion,
+                    Salario = c.Salario,
+                    AñosExperiencia = c.AñosExperiencia,
+                    Provincia = c.Provincia,
+                    Ciudad = c.Ciudad,
+                    NivelEstudios = c.NivelEstudios
+                };
+                ofertasDTO.Add(ofertaDTO);
+            }
+
+            return ofertasDTO;
+        }
     }
 }
