@@ -14,7 +14,7 @@ namespace Infrastructure.Persistance
     {
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<TipoEstadoPostulacion> TipoEstadoPostulacion { get; set; }
-        public DbSet<Oferta> oferta { get; set; }
+        public DbSet<Oferta> Oferta { get; set; }
         public DbSet<OfertaCategoria> OfertaCategoria { get; set; }
         public DbSet<Postulacion> Postulacion { get; set; }
 

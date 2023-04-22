@@ -1,4 +1,8 @@
+using Application.Interfaces.IOferta;
+using Application.UseCase.Services.SOferta;
+using Infrastructure.Command;
 using Infrastructure.Persistance;
+using Infrastructure.Query;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +17,11 @@ builder.Services.AddSwaggerGen();
 //custom
 var connectionString = builder.Configuration["ConnectionString"];
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<IOfertaCommand, OfertaCommand>();
+builder.Services.AddScoped<IOfertaQuery, OfertaQuery>();
+builder.Services.AddScoped<IOfertaQueryServices, OfertaQueryServices>();
+builder.Services.AddScoped<IOfertaCommandServices, OfertaCommandServices>();
 
 
 var app = builder.Build();
