@@ -1,12 +1,13 @@
 using Application.Interfaces.ICategoria;
 using Application.Interfaces.IOferta;
+using Application.Interfaces.ITipoEstadoPostulacion;
 using Application.UseCase.Services.SCategoria;
 using Application.UseCase.Services.SOferta;
+using Application.UseCase.Services.STipoEstadoPostulacion;
 using Infrastructure.Command;
 using Infrastructure.Persistance;
 using Infrastructure.Query;
 using Microsoft.EntityFrameworkCore;
-using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,8 @@ builder.Services.AddScoped<IOfertaCommandServices, OfertaCommandServices>();
 builder.Services.AddScoped<ICategoriaQuery, CategoriaQuery>();
 builder.Services.AddScoped<ICategoriaQueryServices, CategoriaQueryServices>();
 
+builder.Services.AddScoped<ITipoEstadoPostulacionQuery, TipoEstadoPostulacionQuery>();
+builder.Services.AddScoped<ITipoEstadoPostulacionQueryServices, TipoEstadoPostulacionQueryServices>();
 
 var app = builder.Build();
 

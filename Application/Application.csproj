@@ -20,12 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\IEstadoPostulacion\" />
     <Folder Include="Interfaces\IPostulacion\" />
     <Folder Include="Interfaces\IOfertaCategoria\" />
     <Folder Include="UseCase\Services\SPostulacion\" />
     <Folder Include="UseCase\Services\SOfertaCategoria\" />
-    <Folder Include="UseCase\Services\SEstadoPostulacion\" />
   </ItemGroup>
 
 </Project>
