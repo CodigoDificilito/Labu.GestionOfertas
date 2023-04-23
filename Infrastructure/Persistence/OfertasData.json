@@ -103,8 +103,19 @@
     "Ciudad": "Retiro",
     "NivelEstudios": "Universitario",
     "Fecha": "2023-04-22 10:27:32.8956499"
+  },
+  {
+    "OfertaId": "3B4010D9-E137-465D-9A4B-D97B28B87BBE",
+    "EmpresaId": 4,
+    "Titulo": "Administrador/ Contador.",
+    "Descripcion": "Estamos en la búsqueda de Responsable general para empresa con negocios en rubro inmobiliario y de playas de estacionamiento.",
+    "Salario": 200000,
+    "AñosExperiencia": 3,
+    "Provincia": "Buenos Aires",
+    "Ciudad": "Palermo",
+    "NivelEstudios": "Posgrado",
+    "Fecha": "2023-04-23 10:27:32.8956499"
   }
-
 
 
 ]

@@ -1,4 +1,6 @@
+using Application.Interfaces.ICategoria;
 using Application.Interfaces.IOferta;
+using Application.UseCase.Services.SCategoria;
 using Application.UseCase.Services.SOferta;
 using Infrastructure.Command;
 using Infrastructure.Persistance;
@@ -23,6 +25,9 @@ builder.Services.AddScoped<IOfertaCommand, OfertaCommand>();
 builder.Services.AddScoped<IOfertaQuery, OfertaQuery>();
 builder.Services.AddScoped<IOfertaQueryServices, OfertaQueryServices>();
 builder.Services.AddScoped<IOfertaCommandServices, OfertaCommandServices>();
+
+builder.Services.AddScoped<ICategoriaQuery, CategoriaQuery>();
+builder.Services.AddScoped<ICategoriaQueryServices, CategoriaQueryServices>();
 
 
 var app = builder.Build();
