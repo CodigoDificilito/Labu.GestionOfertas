@@ -1,0 +1,129 @@
+﻿[
+
+
+  {
+    "OfertaCategoriaId": 1,
+    "OfertaId": "E058B366-F832-42DD-B001-647919FDFD66",
+    "CategoriaId": 1
+  },
+  {
+    "OfertaCategoriaId": 2,
+    "OfertaId": "E058B366-F832-42DD-B001-647919FDFD66",
+    "CategoriaId": 3
+  },
+  {
+    "OfertaCategoriaId": 3,
+    "OfertaId": "F1B4F44E-05FB-4062-A247-6830964EF063",
+    "CategoriaId": 1
+  },
+  {
+    "OfertaCategoriaId": 4,
+    "OfertaId": "F1B4F44E-05FB-4062-A247-6830964EF063",
+    "CategoriaId": 3
+  },
+  {
+    "OfertaCategoriaId": 5,
+    "OfertaId": "EE69BF0E-735F-44FF-9712-96830FDDBF3A",
+    "CategoriaId": 1
+  },
+  {
+    "OfertaCategoriaId": 6,
+    "OfertaId": "EE69BF0E-735F-44FF-9712-96830FDDBF3A",
+    "CategoriaId": 25
+  },
+  {
+    "OfertaCategoriaId": 7,
+    "OfertaId": "E058B366-F832-42DD-B001-647919FDFD66",
+    "CategoriaId": 33
+  },
+  {
+    "OfertaCategoriaId": 8,
+    "OfertaId": "3DA7995A-715F-40B8-8121-B2FFDEE778B0",
+    "CategoriaId": 25
+  },
+  {
+    "OfertaCategoriaId": 9,
+    "OfertaId": "3DA7995A-715F-40B8-8121-B2FFDEE778B0",
+    "CategoriaId": 33
+  },
+  {
+    "OfertaCategoriaId": 10,
+    "OfertaId": "994EC6D1-3560-4FC6-BE23-E078DEF32527",
+    "CategoriaId": 23
+  },
+  {
+    "OfertaCategoriaId": 11,
+    "OfertaId": "994EC6D1-3560-4FC6-BE23-E078DEF32527",
+    "CategoriaId": 25
+  },
+  {
+    "OfertaCategoriaId": 12,
+    "OfertaId": "994EC6D1-3560-4FC6-BE23-E078DEF32527",
+    "CategoriaId": 33
+  },
+  {
+    "OfertaCategoriaId": 13,
+    "OfertaId": "4093643C-135B-4368-ACE5-E1783DD3F0F8",
+    "CategoriaId": 4
+  },
+  {
+    "OfertaCategoriaId": 14,
+    "OfertaId": "4093643C-135B-4368-ACE5-E1783DD3F0F8",
+    "CategoriaId": 18
+  },
+  {
+    "OfertaCategoriaId": 15,
+    "OfertaId": "4093643C-135B-4368-ACE5-E1783DD3F0F8",
+    "CategoriaId": 23
+  },
+  {
+    "OfertaCategoriaId": 16,
+    "OfertaId": "4093643C-135B-4368-ACE5-E1783DD3F0F8",
+    "CategoriaId": 25
+  },
+  {
+    "OfertaCategoriaId": 17,
+    "OfertaId": "4093643C-135B-4368-ACE5-E1783DD3F0F8",
+    "CategoriaId": 31
+  },
+  {
+    "OfertaCategoriaId": 18,
+    "OfertaId": "8A527FD3-962A-4ABF-B18F-EFCDB6004F07",
+    "CategoriaId": 1
+  },
+  {
+    "OfertaCategoriaId": 19,
+    "OfertaId": "8A527FD3-962A-4ABF-B18F-EFCDB6004F07",
+    "CategoriaId": 4
+  },
+  {
+    "OfertaCategoriaId": 20,
+    "OfertaId": "8A527FD3-962A-4ABF-B18F-EFCDB6004F07",
+    "CategoriaId": 25
+  },
+  {
+    "OfertaCategoriaId": 21,
+    "OfertaId": "1D394678-E0EB-4620-A1DE-F01C7768DDB3",
+    "CategoriaId": 18
+  },
+  {
+    "OfertaCategoriaId": 22,
+    "OfertaId": "1D394678-E0EB-4620-A1DE-F01C7768DDB3",
+    "CategoriaId": 19
+  },
+  {
+    "OfertaCategoriaId": 23,
+    "OfertaId": "3B4010D9-E137-465D-9A4B-D97B28B87BBE",
+    "CategoriaId": 4
+  },
+  {
+    "OfertaCategoriaId": 24,
+    "OfertaId": "3B4010D9-E137-465D-9A4B-D97B28B87BBE",
+    "CategoriaId": 5
+  },
+  {
+    "OfertaCategoriaId": 25,
+    "OfertaId": "3B4010D9-E137-465D-9A4B-D97B28B87BBE",
+    "CategoriaId": 24
+  }
+]

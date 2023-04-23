@@ -40,6 +40,10 @@ namespace Infrastructure.Persistance
             var ofertaJson = File.ReadAllText(rutaArchivoTresJson);
             var ofertas = JsonConvert.DeserializeObject<List<Oferta>>(ofertaJson);
 
+            string rutaArchivoCuatroJson = Path.Combine(directorioActual, "Infrastructure", "Persistence", "OfertaCategoriaData.json");
+            var OfertaCategoriaJson = File.ReadAllText(rutaArchivoCuatroJson);
+            var ofertaCategorias = JsonConvert.DeserializeObject<List<OfertaCategoria>>(OfertaCategoriaJson);
+
             modelBuilder.Entity<Oferta>(entity =>
             {
                 entity.ToTable("Oferta");
@@ -82,6 +86,28 @@ namespace Infrastructure.Persistance
                 entity.HasData(ofertas);
             });
 
+
+            modelBuilder.Entity<Categoria>(entity =>
+            {
+                entity.ToTable("Categoria");
+                entity.HasKey(ci => ci.CategoriaId);
+                entity.Property(ci => ci.CategoriaId)
+                      .ValueGeneratedOnAdd()
+                      .IsRequired();
+                entity.Property(d => d.Descripcion)
+                     .IsRequired()
+                     .HasMaxLength(50);
+
+
+                entity.HasMany<OfertaCategoria>(oc => oc.OfertaCategoria)
+                      .WithOne(c => c.Categoria)
+                      .HasForeignKey(ci => ci.CategoriaId)
+                      .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasData(categorias);
+            });
+
+
             modelBuilder.Entity<OfertaCategoria>(entity =>
             {
                 entity.ToTable("OfertaCategoria");
@@ -102,27 +128,8 @@ namespace Infrastructure.Persistance
                 entity.HasOne<Categoria>(c => c.Categoria)
                       .WithMany(oc => oc.OfertaCategoria)
                       .HasForeignKey(ci => ci.CategoriaId);
-            });
 
-
-            modelBuilder.Entity<Categoria>(entity =>
-            {
-                entity.ToTable("Categoria");
-                entity.HasKey(ci => ci.CategoriaId);
-                entity.Property(ci => ci.CategoriaId)
-                      .ValueGeneratedOnAdd()
-                      .IsRequired();
-                entity.Property(d => d.Descripcion)
-                     .IsRequired()
-                     .HasMaxLength(50);
-
-
-                entity.HasMany<OfertaCategoria>(oc => oc.OfertaCategoria)
-                      .WithOne(c => c.Categoria)
-                      .HasForeignKey(ci => ci.CategoriaId)
-                      .OnDelete(DeleteBehavior.Cascade);
-
-                entity.HasData(categorias);
+                entity.HasData(ofertaCategorias);
             });
 
 
