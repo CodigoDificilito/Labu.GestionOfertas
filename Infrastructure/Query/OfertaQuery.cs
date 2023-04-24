@@ -1,13 +1,7 @@
-﻿using Application.DTO;
-using Application.Interfaces.IOferta;
+﻿using Application.Interfaces.IOferta;
 using Domain.Entities;
 using Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Query
 {
@@ -20,24 +14,6 @@ namespace Infrastructure.Query
             _context = context;
         }
 
-        public async Task<bool> ExistOferta(Guid ofertaId)
-        {
-            var oferta = await _context.Oferta.FirstOrDefaultAsync(o => o.OfertaId == ofertaId);
-
-            if (oferta == null)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public async Task<List<Oferta>> GetListOferta()
-        {
-            var ofertas = _context.Oferta.ToList();
-
-            return await Task.FromResult(ofertas);
-        }
-
         public Task<List<Oferta>> GetListOfertaByEmpresa(int id)
         {
             var ofertas = _context.Oferta.Where(o => o.EmpresaId == id)
@@ -48,16 +24,16 @@ namespace Infrastructure.Query
 
         public async Task<List<Oferta>> GetListOfertaByTitulo(string titulo)
         {
-            var ofertas = _context.Oferta
+            var ofertas = await _context.Oferta
                 .Where(o => o.Titulo.Contains(titulo))
-                .ToList();
+                .ToListAsync();
 
             return ofertas;
         }
 
-        public Oferta GetOferta(Guid ofertaId)
+        public async Task<Oferta> GetOferta(Guid ofertaId)
         {
-            var oferta = _context.Oferta.Find(ofertaId);
+            var oferta = await _context.Oferta.FindAsync(ofertaId);
 
             return oferta;
         }

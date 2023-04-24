@@ -1,14 +1,10 @@
-﻿using Application.DTO;
-using Domain.Entities;
+﻿using Domain.Entities;
 
 namespace Application.Interfaces.IOferta
 {
     public interface IOfertaQuery
     {
-        Task<List<Oferta>> GetListOferta();
-        Oferta GetOferta(Guid ofertaId);
-
-        Task<bool> ExistOferta(Guid ofertaId);
+        Task<Oferta> GetOferta(Guid ofertaId);
 
         Task<List<Oferta>> GetListOfertaByTitulo(string titulo);
 

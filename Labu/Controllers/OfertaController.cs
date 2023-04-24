@@ -39,25 +39,34 @@ namespace Labu.Controllers
             return StatusCode(result.code, result.result);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> GetAllOfertas()
-        //{
-        //    var result = _queryServices.GetOfertas();
-        //    return new JsonResult(result);
-        //}
+        [HttpGet("porId/{id}")]
 
-        [HttpGet("{titulo}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> GetOfertaById(Guid id)
+        {
+            var result = await _queryServices.GetOfertaById(id);
+            return StatusCode(result.code, result.result);
+        }
+
+        [HttpGet("porTitulo/{titulo}")]
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetAllOfertasByTitulo(string titulo)
         {
             var result = await _queryServices.GetListOfertaByTitulo(titulo);
-            return new JsonResult(result);
+            return StatusCode(result.code, result.result);
         }
 
-        [HttpGet("empresa/{empresaId}")]
+        [HttpGet("porEmpresa/{empresaId}")]
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetAllOfertasByEmpresaId(int empresaId)
         {
             var result = await _queryServices.GetListOfertaByEmpresaId(empresaId);
-            return new JsonResult(result);
+            return StatusCode(result.code, result.result);
         }
 
     }

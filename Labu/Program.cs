@@ -1,8 +1,10 @@
 using Application.Interfaces.ICategoria;
 using Application.Interfaces.IOferta;
+using Application.Interfaces.IOfertaCategoria;
 using Application.Interfaces.ITipoEstadoPostulacion;
 using Application.UseCase.Services.SCategoria;
 using Application.UseCase.Services.SOferta;
+using Application.UseCase.Services.SOfertaCategoria;
 using Application.UseCase.Services.STipoEstadoPostulacion;
 using Infrastructure.Command;
 using Infrastructure.Persistance;
@@ -32,6 +34,11 @@ builder.Services.AddScoped<ICategoriaQueryServices, CategoriaQueryServices>();
 
 builder.Services.AddScoped<ITipoEstadoPostulacionQuery, TipoEstadoPostulacionQuery>();
 builder.Services.AddScoped<ITipoEstadoPostulacionQueryServices, TipoEstadoPostulacionQueryServices>();
+
+builder.Services.AddScoped<IOfertaCategoriaCommand, OfertaCategoriaCommand>();
+builder.Services.AddScoped<IOfertaCategoriaQuery, OfertaCategoriaQuery>();
+builder.Services.AddScoped<IOfertaCategoriaCommandServices, OfertaCategoriaCommandServices>();
+builder.Services.AddScoped<IOfertaCategoriaQueryServices, OfertaCategoriaQueryServices>();
 
 var app = builder.Build();
 

@@ -23,17 +23,18 @@ namespace Infrastructure.Command
             await _context.SaveChangesAsync();
         }
 
-        public async Task RemoveOferta(Guid ofertaId)
+        public async Task<bool> RemoveOferta(Guid ofertaId)
         {
             var oferta = await _context.Oferta.FindAsync(ofertaId);
 
             if (oferta == null)
             {
-                throw new Exception("No se encontró la Oferta");
+                return false;
             }
             _context.Remove(oferta);
-
             await _context.SaveChangesAsync();
+
+            return true;
         }
     }
 }

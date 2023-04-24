@@ -9,12 +9,9 @@ namespace Application.UseCase.Services.SOferta
     public class OfertaCommandServices : IOfertaCommandServices
     {
         private readonly IOfertaCommand _command;
-        private readonly IOfertaQueryServices _queryServices;
-
-        public OfertaCommandServices(IOfertaCommand command, IOfertaQueryServices queryServices)
+        public OfertaCommandServices(IOfertaCommand command)
         {
             _command = command;
-            _queryServices = queryServices;
         }
 
         public async Task<ResponseMessage> CreateOferta(AddOfertaRequest dto)
@@ -55,10 +52,8 @@ namespace Application.UseCase.Services.SOferta
 
         public async Task<ResponseMessage> DeleteOferta(Guid ofertaId)
         {
-            if (await _queryServices.ExistOfertaById(ofertaId))
+            if (await _command.RemoveOferta(ofertaId))
             {
-                await _command.RemoveOferta(ofertaId);
-
                 return new ResponseMessage(200, new { result = "La oferta se ha eliminado con exito" });
             }
 

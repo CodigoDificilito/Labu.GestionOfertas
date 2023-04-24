@@ -1,15 +1,11 @@
-﻿using Application.DTO;
+﻿using Application.DTO.Response;
 
 namespace Application.Interfaces.IOferta
 {
     public interface IOfertaQueryServices
     {
-        Task<List<OfertaDTO>> GetOfertas();
-        Task<List<OfertaDTO>> GetListOfertaByTitulo(string titulo);
-        Task<List<OfertaDTO>> GetListOfertaByEmpresaId(int empresaId);
-
-        OfertaDTO GetOfertaById(Guid ofertaId);
-
-        Task<bool> ExistOfertaById(Guid ofertaId);
+        Task<ResponseMessage> GetListOfertaByTitulo(string titulo);
+        Task<ResponseMessage> GetListOfertaByEmpresaId(int empresaId);
+        Task<ResponseMessage> GetOfertaById(Guid ofertaId);
     }
 }
