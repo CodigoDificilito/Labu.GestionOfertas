@@ -25,7 +25,7 @@ namespace Labu.Controllers
         }
 
 
-        [HttpGet("/Todos")]
+        [HttpGet("Todos/")]
         public async Task<IActionResult> GetAllTiposEstadoPostulacion()
         {
             var result = await _queryServices.GetTiposEstadoPogstulacion();

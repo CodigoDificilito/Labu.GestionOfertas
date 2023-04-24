@@ -25,7 +25,7 @@ namespace Labu.Controllers
         }
 
 
-        [HttpGet("/Todas")]
+        [HttpGet("Todas/")]
         public async Task<IActionResult> GetAllCategorias()
         {
             var result = await _queryServices.GetOfertas();
