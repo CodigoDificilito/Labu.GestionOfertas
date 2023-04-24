@@ -21,9 +21,7 @@
 
   <ItemGroup>
     <Folder Include="Interfaces\IPostulacion\" />
-    <Folder Include="Interfaces\IOfertaCategoria\" />
     <Folder Include="UseCase\Services\SPostulacion\" />
-    <Folder Include="UseCase\Services\SOfertaCategoria\" />
   </ItemGroup>
 
 </Project>

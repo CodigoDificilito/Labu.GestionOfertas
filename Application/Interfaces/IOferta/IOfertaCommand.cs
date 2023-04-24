@@ -10,7 +10,7 @@ namespace Application.Interfaces.IOferta
     public interface IOfertaCommand
     {
         public Task InsertOferta(Oferta oferta);
-        public Task RemoveOferta(Guid ofertaId);
+        public Task<bool> RemoveOferta(Guid ofertaId);
 
     }
 }

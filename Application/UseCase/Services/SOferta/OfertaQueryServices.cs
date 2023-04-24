@@ -1,10 +1,6 @@
 ﻿using Application.DTO;
+using Application.DTO.Response;
 using Application.Interfaces.IOferta;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.UseCase.Services.SOferta
 {
@@ -17,34 +13,15 @@ namespace Application.UseCase.Services.SOferta
             _query = query;
         }
 
-        public async Task<List<OfertaDTO>> GetListOfertaByTitulo(string titulo)
+        public async Task<ResponseMessage> GetListOfertaByTitulo(string titulo)
         {
             var ofertas = await _query.GetListOfertaByTitulo(titulo);
             var ofertasDTO = new List<OfertaDTO>();
 
-            foreach (var c in ofertas)
+            if (ofertas.Count==0)
             {
-                var ofertaDTO = new OfertaDTO()
-                {
-                    EmpresaId = c.EmpresaId,
-                    Titulo = c.Titulo,
-                    Descripcion = c.Descripcion,
-                    Salario = c.Salario,
-                    AñosExperiencia = c.AñosExperiencia,
-                    Provincia = c.Provincia,
-                    Ciudad = c.Ciudad,
-                    NivelEstudios = c.NivelEstudios
-                };
-                ofertasDTO.Add(ofertaDTO);
+                return new ResponseMessage(204, new { result = "No existen ofertas con el titulo ingresado." });
             }
-
-            return ofertasDTO;
-        }
-
-        public async Task<List<OfertaDTO>> GetOfertas()
-        {
-            var ofertas = await _query.GetListOferta();
-            var ofertasDTO = new List<OfertaDTO>();
 
             foreach (var c in ofertas)
             {
@@ -62,14 +39,18 @@ namespace Application.UseCase.Services.SOferta
                 ofertasDTO.Add(ofertaDTO);
             }
 
-            return ofertasDTO;
+            return new ResponseMessage(200, ofertasDTO);
         }
-
-        public OfertaDTO GetOfertaById(Guid ofertaId)
+        public async Task<ResponseMessage> GetOfertaById(Guid ofertaId)
         {
-            var oferta = _query.GetOferta(ofertaId);
+            var oferta = await _query.GetOferta(ofertaId);
 
-            var ofertaDTO = new OfertaDTO()
+            if (oferta==null)
+            {
+                return new ResponseMessage(404, new { request = "Oferta no encontrada." });
+            }
+
+            return new ResponseMessage(200, new OfertaDTO()
             {
                 EmpresaId = oferta.EmpresaId,
                 Titulo = oferta.Titulo,
@@ -79,20 +60,18 @@ namespace Application.UseCase.Services.SOferta
                 Provincia = oferta.Provincia,
                 Ciudad = oferta.Ciudad,
                 NivelEstudios = oferta.NivelEstudios
-            };
-
-            return ofertaDTO;
+            });
         }
 
-        public async Task<bool> ExistOfertaById(Guid ofertaId)
-        {
-            return await _query.ExistOferta(ofertaId);
-        }
-
-        public async Task<List<OfertaDTO>> GetListOfertaByEmpresaId(int empresaId)
+        public async Task<ResponseMessage> GetListOfertaByEmpresaId(int empresaId)
         {
             var ofertas = await _query.GetListOfertaByEmpresa(empresaId);
             var ofertasDTO = new List<OfertaDTO>();
+
+            if (ofertas.Count==0)
+            {
+                return new ResponseMessage(204, new { result = "La Empresa con el ID ingresado no tiene Ofertas." });
+            }
 
             foreach (var c in ofertas)
             {
@@ -110,7 +89,7 @@ namespace Application.UseCase.Services.SOferta
                 ofertasDTO.Add(ofertaDTO);
             }
 
-            return ofertasDTO;
+            return new ResponseMessage(200, ofertasDTO);
         }
     }
 }
