@@ -6,7 +6,7 @@ namespace Application.Interfaces.IOferta
     {
         Task<Oferta> GetOferta(Guid ofertaId);
 
-        Task<List<Oferta>> GetListOfertaByFilters(string? descripcion, int? empresa, int? provincia, int page, string fecha);
+        Task<IList<Oferta>> GetListOfertaByFilters(string? descripcion, int? empresa, int? provincia, int page, string fecha);
 
     }
 }

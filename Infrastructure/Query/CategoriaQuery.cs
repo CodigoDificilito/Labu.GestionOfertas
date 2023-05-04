@@ -22,7 +22,7 @@ namespace Infrastructure.Query
             return categoria;
         }
 
-        public async Task<List<Categoria>> GetListCategoria()
+        public async Task<IList<Categoria>> GetListCategoria()
         {
             return await _context.Categoria
                 .ToListAsync();

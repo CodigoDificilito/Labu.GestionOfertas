@@ -41,7 +41,7 @@ namespace Application.UseCase.Services.SCategoria
             };
         }
 
-        public async Task<List<CategoriaResponse>> GetOfertas()
+        public async Task<IList<CategoriaResponse>> GetOfertas()
         {
             var categorias = await _query.GetListCategoria();
             var categoriasResponse = new List<CategoriaResponse>();

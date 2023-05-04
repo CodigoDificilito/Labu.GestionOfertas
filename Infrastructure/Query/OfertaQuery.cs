@@ -14,7 +14,7 @@ namespace Infrastructure.Query
             _context = context;
         }
 
-        public async Task<List<Oferta>> GetListOfertaByFilters(string? descripcion, int? empresa, int? provincia, int page, string orden)
+        public async Task<IList<Oferta>> GetListOfertaByFilters(string? descripcion, int? empresa, int? provincia, int page, string orden)
         {
             var ofertas = _context.Oferta
                 .Include(o => o.Experiencia)

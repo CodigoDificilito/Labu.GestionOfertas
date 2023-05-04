@@ -10,12 +10,9 @@ namespace Application.UseCase.Services.SOferta
     {
         private readonly IOfertaCommand _ofertaCommand;
         private readonly IOfertaCategoriaCommandServices _ofertaCategoriaCommandServices;
-
-        private readonly HttpClient _httpClient;
-        public OfertaCommandServices(IOfertaCommand command, HttpClient httpClient, IOfertaCategoriaCommandServices ofertaCategoriaCommandServices)
+        public OfertaCommandServices(IOfertaCommand command, IOfertaCategoriaCommandServices ofertaCategoriaCommandServices)
         {
             _ofertaCommand = command;
-            _httpClient = httpClient;
             _ofertaCategoriaCommandServices = ofertaCategoriaCommandServices;
         }
 

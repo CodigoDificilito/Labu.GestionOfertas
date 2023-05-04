@@ -12,19 +12,18 @@ namespace Application.UseCase.Services.STipoEstadoPostulacion
             _query = query;
         }
 
-        public async Task<List<TipoEstadoPostulacionResponse>> GetTiposEstadoPogstulacion()
+        public async Task<IList<TipoEstadoPostulacionResponse>> GetTiposEstadoPogstulacion()
         {
             var tiposEstadoPostulacion = await _query.GetListTipoEstadoPostulacion();
             var response = new List<TipoEstadoPostulacionResponse>();
 
-            foreach (var c in tiposEstadoPostulacion)
+            foreach (var item in tiposEstadoPostulacion)
             {
-                var dto = new TipoEstadoPostulacionResponse()
+                response.Add(new TipoEstadoPostulacionResponse()
                 {
-                    Id = c.TipoEstadoPostulacionId,
-                    Descripcion = c.Descripcion
-                };
-                response.Add(dto);
+                    Id = item.TipoEstadoPostulacionId,
+                    Descripcion = item.Descripcion
+                });
             }
             return response;
         }
