@@ -26,6 +26,12 @@
     4,
     "Descripcion": 
     "Finalista"
-  }
+  },
 
+  {
+    "TipoEstadoPostulacionId": 
+    5,
+    "Descripcion": 
+    "Proceso finalizado"
+  }
 ]

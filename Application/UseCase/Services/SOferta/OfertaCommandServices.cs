@@ -1,20 +1,25 @@
-﻿using Application.DTO;
-using Application.DTO.Request;
+﻿using Application.DTO.Request;
 using Application.DTO.Response;
 using Application.Interfaces.IOferta;
+using Application.Interfaces.IOfertaCategoria;
 using Domain.Entities;
 
 namespace Application.UseCase.Services.SOferta
 {
     public class OfertaCommandServices : IOfertaCommandServices
     {
-        private readonly IOfertaCommand _command;
-        public OfertaCommandServices(IOfertaCommand command)
+        private readonly IOfertaCommand _ofertaCommand;
+        private readonly IOfertaCategoriaCommandServices _ofertaCategoriaCommandServices;
+
+        private readonly HttpClient _httpClient;
+        public OfertaCommandServices(IOfertaCommand command, HttpClient httpClient, IOfertaCategoriaCommandServices ofertaCategoriaCommandServices)
         {
-            _command = command;
+            _ofertaCommand = command;
+            _httpClient = httpClient;
+            _ofertaCategoriaCommandServices = ofertaCategoriaCommandServices;
         }
 
-        public async Task<ResponseMessage> CreateOferta(AddOfertaRequest dto)
+        public async Task<OfertaResponse> CreateOferta(OfertaRequest dto)
         {
 
             var oferta = new Oferta
@@ -24,40 +29,84 @@ namespace Application.UseCase.Services.SOferta
                 Titulo = dto.Titulo,
                 Descripcion = dto.Descripcion,
                 Salario = dto.Salario,
-                AñosExperiencia = dto.AñosExperiencia,
-                Provincia = dto.Provincia,
-                Ciudad = dto.Ciudad,
-                NivelEstudios = dto.NivelEstudios,
-                Fecha = DateTime.Now
+                ExperienciaId = dto.ExperienciaId,
+                ProvinciaId = dto.ProvinciaId,
+                CuidadId = dto.CiudadId,
+                NivelEstudioId = dto.NivelEstudiosId,
+                Fecha = DateTime.Now,
+                Status = true
             };
 
-            await _command.InsertOferta(oferta);
+            oferta = await _ofertaCommand.InsertOferta(oferta);
 
-            var result = new AddOfertaResponse
+            var ofertaCategoriaRequest = new OfertaCategoriaRequest
+            {
+                OfertaId = oferta.OfertaId,
+                Categorias = dto.Categorias
+            };
+
+            var ofertaCategoriasResponse = await _ofertaCategoriaCommandServices.CreateOfertaCategoria(ofertaCategoriaRequest);
+
+
+            return new OfertaResponse
             {
                 OfertaId = oferta.OfertaId,
                 EmpresaId = oferta.EmpresaId,
                 Titulo = oferta.Titulo,
                 Descripcion = oferta.Descripcion,
                 Salario = oferta.Salario,
-                AñosExperiencia = oferta.AñosExperiencia,
-                Provincia = oferta.Provincia,
-                Ciudad = oferta.Ciudad,
-                NivelEstudios = oferta.NivelEstudios,
-                Fecha = oferta.Fecha
+                Experiencia = new ExperienciaResponse
+                {
+                    Id = oferta.Experiencia.ExperienciaId,
+                    Nombre = oferta.Experiencia.Nombre
+                },
+                ProvinciaId = oferta.ProvinciaId,
+                CiudadId = oferta.CuidadId,
+                NivelEstudio = new NivelEstudioResponse
+                {
+                    Id = oferta.NivelEstudio.NivelEstudioId,
+                    Nombre = oferta.NivelEstudio.Nombre
+                },
+                Fecha = oferta.Fecha.ToString(),
+                Categorias = ofertaCategoriasResponse
             };
-
-            return new ResponseMessage(201, result);
         }
 
-        public async Task<ResponseMessage> DeleteOferta(Guid ofertaId)
+        public async Task<OfertaResponse> DeleteOferta(Guid ofertaId)
         {
-            if (await _command.RemoveOferta(ofertaId))
+            var oferta = await _ofertaCommand.RemoveOferta(ofertaId);
+
+            if (oferta==null)
             {
-                return new ResponseMessage(200, new { result = "La oferta se ha eliminado con exito" });
+                return null;
             }
 
-            return new ResponseMessage(404, new { result = "No existe una Oferta para el ID ingresado" });
+            return new OfertaResponse
+            {
+                OfertaId = oferta.OfertaId,
+                EmpresaId = oferta.EmpresaId,
+                Titulo = oferta.Titulo,
+                Descripcion = oferta.Descripcion,
+                Salario = oferta.Salario,
+                Experiencia = new ExperienciaResponse
+                {
+                    Id = oferta.Experiencia.ExperienciaId,
+                    Nombre = oferta.Experiencia.Nombre
+                },
+                ProvinciaId = oferta.ProvinciaId,
+                CiudadId = oferta.CuidadId,
+                NivelEstudio = new NivelEstudioResponse
+                {
+                    Id = oferta.NivelEstudio.NivelEstudioId,
+                    Nombre = oferta.NivelEstudio.Nombre
+                },
+                Fecha = oferta.Fecha.ToString(),
+                Categorias = oferta.OfertaCategoria.Select(oc => new OfertaCategoriaResponse
+                {
+                    CategoriaId = oc.Categoria.CategoriaId,
+                    Nombre = oc.Categoria.Descripcion
+                }).ToList()
+            };
         }
     }
 }

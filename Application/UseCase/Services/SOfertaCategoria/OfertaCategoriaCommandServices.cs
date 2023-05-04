@@ -14,33 +14,41 @@ namespace Application.UseCase.Services.SOfertaCategoria
             _command = command;
         }
 
-        public async Task<ResponseMessage> CreateOfertaCategoria(AddOfertaCategoriaRequest dto)
+        public async Task<IList<OfertaCategoriaResponse>> CreateOfertaCategoria(OfertaCategoriaRequest dto)
         {
-            var ofertaCategoria = new OfertaCategoria
+            var ofertaCategoriasResponse = new List<OfertaCategoriaResponse>();
+
+            foreach (var categoriaId in dto.Categorias)
             {
-                OfertaId = dto.OfertaId,
-                CategoriaId = dto.CategoriaId
-            };
+                var ofertaCategoria = new OfertaCategoria
+                {
+                    CategoriaId = categoriaId,
+                    OfertaId = dto.OfertaId,
+                    Status = true
+                };
 
-            await _command.InsertOfertaCategoria(ofertaCategoria);
+                var categoria = await _command.InsertOfertaCategoria(ofertaCategoria);
 
-            var result = new AddOfertaCategoriaResponse
-            {
-                OfertaId = ofertaCategoria.OfertaId,
-                CategoriaId = ofertaCategoria.CategoriaId
-            };
-
-            return new ResponseMessage(201, result);
-        }
-
-        public async Task<ResponseMessage> DeleteOfertaCategoria(Guid ofertaId, int categoriaId)
-        {
-            if (await _command.RemoveOfertaCategoria(ofertaId, categoriaId))
-            {
-                return new ResponseMessage(200, new { result = "La Categoria se ha eliminado de la Oferta con exito" });
+                ofertaCategoriasResponse.Add(new OfertaCategoriaResponse
+                {
+                    CategoriaId = categoria.CategoriaId,
+                    Nombre = categoria.Descripcion
+                });
             }
 
-            return new ResponseMessage(404, new { result = "No se encontro una Categoria asociada para el ID ingresado" });
+            return ofertaCategoriasResponse;
+        }
+
+        public async Task<bool> DeleteOfertaCategoria(Guid ofertaId, IList<int> categorias)
+        {
+            foreach (var categoriaId in categorias)
+            {
+                if (!await _command.RemoveOfertaCategoria(ofertaId, categoriaId))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

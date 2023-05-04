@@ -1,11 +1,7 @@
 ﻿using Application.Interfaces.IOferta;
 using Domain.Entities;
 using Infrastructure.Persistance;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Command
 {
@@ -17,24 +13,35 @@ namespace Infrastructure.Command
         {
             _context = context;
         }
-        public async Task InsertOferta(Oferta oferta)
+        public async Task<Oferta> InsertOferta(Oferta oferta)
         {
-            _context.Add(oferta);
+            await _context.AddAsync(oferta);
             await _context.SaveChangesAsync();
+
+            var ofertaWithPlusData = await _context.Oferta
+                .Include(e => e.Experiencia)
+                .Include(ne => ne.NivelEstudio)
+                .FirstOrDefaultAsync(o => o.OfertaId==oferta.OfertaId);
+
+            return ofertaWithPlusData;
         }
 
-        public async Task<bool> RemoveOferta(Guid ofertaId)
+        public async Task<Oferta> RemoveOferta(Guid ofertaId)
         {
-            var oferta = await _context.Oferta.FindAsync(ofertaId);
+            var oferta = await _context.Oferta
+                .Include(o => o.Experiencia)
+                .Include(o => o.NivelEstudio)
+                .Include(o => o.OfertaCategoria)
+                .ThenInclude(oc => oc.Categoria)
+                .FirstOrDefaultAsync(o => o.OfertaId == ofertaId && o.Status == true);
 
-            if (oferta == null)
+            if (oferta != null)
             {
-                return false;
+                oferta.Status = false;
+                await _context.SaveChangesAsync();
             }
-            _context.Remove(oferta);
-            await _context.SaveChangesAsync();
-
-            return true;
+            
+            return oferta;
         }
     }
 }

@@ -1,13 +1,14 @@
-﻿using Application.DTO;
-using Application.DTO.Response;
+﻿using Application.DTO.Response;
 
 namespace Application.Interfaces.IOferta
 {
     public interface ICategoriaQueryServices
     {
-        Task<List<CategoriaDTO>> GetOfertas();
+        Task<List<CategoriaResponse>> GetOfertas();
 
-        Task<ResponseMessage> GetCategoriaById(int categoriaId);
+        Task<bool> CategoriasExist(IList<int> categorias);
+
+        Task<CategoriaResponse> GetCategoriaById(int categoriaId);
 
     }
 }

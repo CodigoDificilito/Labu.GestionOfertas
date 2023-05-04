@@ -1,11 +1,5 @@
-﻿using Application.DTO;
-using Application.DTO.Response;
+﻿using Application.DTO.Response;
 using Application.Interfaces.ITipoEstadoPostulacion;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.UseCase.Services.STipoEstadoPostulacion
 {
@@ -18,36 +12,37 @@ namespace Application.UseCase.Services.STipoEstadoPostulacion
             _query = query;
         }
 
-        public async Task<List<TipoEstadoPostulacionDTO>> GetTiposEstadoPogstulacion()
+        public async Task<List<TipoEstadoPostulacionResponse>> GetTiposEstadoPogstulacion()
         {
             var tiposEstadoPostulacion = await _query.GetListTipoEstadoPostulacion();
-            var tiposEstadoPostulacionDTO = new List<TipoEstadoPostulacionDTO>();
+            var response = new List<TipoEstadoPostulacionResponse>();
 
             foreach (var c in tiposEstadoPostulacion)
             {
-                var tipoEstadoPostulacionDTO = new TipoEstadoPostulacionDTO()
+                var dto = new TipoEstadoPostulacionResponse()
                 {
+                    Id = c.TipoEstadoPostulacionId,
                     Descripcion = c.Descripcion
                 };
-                tiposEstadoPostulacionDTO.Add(tipoEstadoPostulacionDTO);
+                response.Add(dto);
             }
-
-            return tiposEstadoPostulacionDTO;
+            return response;
         }
 
-        public async Task<ResponseMessage> GetTipoEstadoPostulacionById(int id)
+        public async Task<TipoEstadoPostulacionResponse> GetTipoEstadoPostulacionById(int id)
         {
             var tipoEstadoPostulacion = await _query.GetTipoEstadoPostulacion(id);
 
-            if (tipoEstadoPostulacion != null)
+            if (tipoEstadoPostulacion == null)
             {
-                return new ResponseMessage(200, new TipoEstadoPostulacionDTO()
-                {
-                    Descripcion = tipoEstadoPostulacion.Descripcion
-                });
+                return null;
             }
 
-            return new ResponseMessage(404, new { result = "La Tipo de estado no fue encontrado o no existe." });
+            return new TipoEstadoPostulacionResponse
+            {
+                Id = tipoEstadoPostulacion.TipoEstadoPostulacionId,
+                Descripcion = tipoEstadoPostulacion.Descripcion
+            };
         }
     }
 }

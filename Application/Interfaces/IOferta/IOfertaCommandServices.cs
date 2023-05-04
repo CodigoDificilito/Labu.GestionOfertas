@@ -5,8 +5,8 @@ namespace Application.Interfaces.IOferta
 {
     public interface IOfertaCommandServices
     {
-        public Task<ResponseMessage> CreateOferta(AddOfertaRequest dto);
-        public Task<ResponseMessage> DeleteOferta(Guid ofertaId);
+        public Task<OfertaResponse> CreateOferta(OfertaRequest dto);
+        public Task<OfertaResponse> DeleteOferta(Guid ofertaId);
 
     }
 }

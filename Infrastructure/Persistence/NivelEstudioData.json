@@ -1,0 +1,43 @@
+﻿[
+
+  {
+    "NivelEstudioId": 1,
+    "Nombre": "Primaria"
+  },
+
+  {
+    "NivelEstudioId": 2,
+    "Nombre": "Secundaria"
+  },
+
+  {
+    "NivelEstudioId": 3,
+    "Nombre": "Terciario"
+  },
+
+  {
+    "NivelEstudioId": 4,
+    "Nombre": "Universitario"
+  },
+
+  {
+    "NivelEstudioId": 5,
+    "Nombre": "Posgrado"
+  },
+
+  {
+    "NivelEstudioId": 6,
+    "Nombre": "Master"
+  },
+
+  {
+    "NivelEstudioId": 7,
+    "Nombre": "Doctorado"
+  },
+
+  {
+    "NivelEstudioId": 8,
+    "Nombre": "Sin estudios"
+  }
+
+]

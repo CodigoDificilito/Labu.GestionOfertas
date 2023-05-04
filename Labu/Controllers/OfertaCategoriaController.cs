@@ -1,6 +1,5 @@
-﻿using Application.DTO.Request;
+﻿using Application.DTO.Response;
 using Application.Interfaces.IOfertaCategoria;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Labu.Controllers
@@ -18,36 +17,29 @@ namespace Labu.Controllers
             _queryServices = queryServices;
         }
 
-        [HttpPost]
-
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddOfertaCategoria(AddOfertaCategoriaRequest request)
-        {
-            var result = await _commandServices.CreateOfertaCategoria(request);
-            return StatusCode(result.code, result.result);
-        }
-
-        [HttpDelete("{ofertaId}/{categoriaId}")]
+        [HttpDelete("{ofertaId}")]
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteOfertaCategoria(Guid ofertaId, int categoriaId)
+        [ProducesResponseType(typeof(BadRequest), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(BadRequest), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeleteOfertaCategoria(Guid ofertaId, IList<int> categorias)
         {
-            var result = await _commandServices.DeleteOfertaCategoria(ofertaId, categoriaId);
+            if (!ModelState.IsValid)
+            {
+                return new JsonResult(new BadRequest { message = "Compruebe que los datos ingresados sean validos." }) { StatusCode = 400 };
+            }
 
-            return StatusCode(result.code, result.result);
+            if (!await _queryServices.OfertaCategoriaExistInOfertaId(ofertaId, categorias))
+            {
+                return new JsonResult(new BadRequest { message = "No se a encontrado una de las Categorias, asegurese de ingresar el ID correctamente." }) { StatusCode = 404 };
+            }
+
+            if (!await _commandServices.DeleteOfertaCategoria(ofertaId, categorias))
+            {
+                return new JsonResult(new BadRequest { message = "Ingrese un ID de Oferta existente." }) { StatusCode = 404 };
+            }
+
+            return new JsonResult("Categorias eliminadas.") { StatusCode = 200 };
         }
-
-        [HttpGet("{ofertaId}")]
-
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> GetAllOfertaCategoriaByOferta(Guid ofertaId)
-        {
-            var result = await _queryServices.GetListOfertaCategoriaByOfertaId(ofertaId);
-            return StatusCode(result.code, result.result);
-        }
-
     }
 }

@@ -11,7 +11,7 @@ namespace Domain.Entities
         public int OfertaCategoriaId { get; set; }
         public Guid OfertaId { get; set; }
         public int CategoriaId { get; set; }
-
+        public bool Status { get; set; }
 
         public Oferta Oferta { get; set; }
         public Categoria Categoria { get; set; }

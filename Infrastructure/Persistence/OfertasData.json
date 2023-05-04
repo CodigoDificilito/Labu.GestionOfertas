@@ -7,11 +7,12 @@
     "Titulo": "Desarrollador .NET Junior/Ssr.",
     "Descripcion": "Buscamos Desarrollador .NET Junior/Ssr. para sumarse a importante empresa de producto IT, líder en la creación de soluciones para el sector de salud.",
     "Salario": 200000,
-    "AñosExperiencia": 3,
-    "Provincia": "Buenos Aires",
-    "Ciudad": "Retiro",
-    "NivelEstudios": "Universitario",
-    "Fecha": "2023-04-22 08:05:19.3749336"
+    "ExperienciaId": 3,
+    "ProvinciaId": 6,
+    "CiudadId": 60091,
+    "NivelEstudioId": 4,
+    "Fecha": "2023-04-22 08:05:19.3749336",
+    "Status": "True"
   },
 
   {
@@ -20,11 +21,12 @@
     "Titulo": "Desarrollador .NET Junior.",
     "Descripcion": "Buscamos Desarrollador .NET Junior/Ssr. para sumarse a importante empresa de producto IT, líder en la creación de soluciones para el sector de salud.",
     "Salario": 120000,
-    "AñosExperiencia": 1,
-    "Provincia": "Buenos Aires",
-    "Ciudad": "Quilmes",
-    "NivelEstudios": "Terciario",
-    "Fecha": "2023-03-22 08:04:50.9286762"
+    "ExperienciaId": 1,
+    "ProvinciaId": 6,
+    "CiudadId": 60658,
+    "NivelEstudioId": 3,
+    "Fecha": "2023-03-22 08:04:50.9286762",
+    "Status": "True"
   },
 
   {
@@ -33,24 +35,26 @@
     "Titulo": "Analista programador/a de sistemas.",
     "Descripcion": "Buscamos AUXLIAR DE OPERACIONES SISTEMAS.",
     "Salario": 150000,
-    "AñosExperiencia": 1,
-    "Provincia": "Buenos Aires",
-    "Ciudad": "Moreno",
-    "NivelEstudios": "Universitario",
-    "Fecha": "2023-04-23 08:05:19.3749336"
+    "ExperienciaId": 1,
+    "ProvinciaId": 6,
+    "CiudadId": 60560,
+    "NivelEstudioId": 4,
+    "Fecha": "2023-04-23 08:05:19.3749336",
+    "Status": "True"
   },
 
   {
     "OfertaId": "3DA7995A-715F-40B8-8121-B2FFDEE778B0",
     "EmpresaId": 2,
     "Titulo": "Desarrollador SQL Server Jr/SSr",
-    "Descripcion": "uscamos Desarrollador SQL Server Junior/SSR. para sumarse a importante empresa de producto IT, líder en la creación de soluciones para el sector de salud.",
+    "Descripcion": "Buscamos Desarrollador SQL Server Junior/SSR. para sumarse a importante empresa de producto IT, líder en la creación de soluciones para el sector de salud.",
     "Salario": 220000,
-    "AñosExperiencia": 3,
-    "Provincia": "Buenos Aires",
-    "Ciudad": "Florencion Varela",
-    "NivelEstudios": "Universitario",
-    "Fecha": "2023-05-22 12:13:20.0719537"
+    "ExperienciaId": 3,
+    "ProvinciaId": 6,
+    "CiudadId": 60274,
+    "NivelEstudioId": 4,
+    "Fecha": "2023-05-22 12:13:20.0719537",
+    "Status": "True"
   },
 
   {
@@ -59,11 +63,12 @@
     "Titulo": "Desarrollador Java Jr.",
     "Descripcion": "En Ecosistemas, buscamos un Desarrollador Java Jr/Ssr para sumar al equipo de nuestro cliente, en relación directa con el mismo.",
     "Salario": 180000,
-    "AñosExperiencia": 1,
-    "Provincia": "Buenos Aires",
-    "Ciudad": "Retiro",
-    "NivelEstudios": "Secundario",
-    "Fecha": "2023-03-22 12:11:59.9750193"
+    "ExperienciaId": 1,
+    "ProvinciaId": 6,
+    "CiudadId": 60091,
+    "NivelEstudioId": 2,
+    "Fecha": "2023-03-22 12:11:59.9750193",
+    "Status": "True"
   },
 
   {
@@ -72,11 +77,12 @@
     "Titulo": "Administrador de Infraestructura Ssr.",
     "Descripcion": "En Ecosistemas estamos en la búsqueda de un Administrador de Backups Ssr/Sr para sumarse a nuestro equipo",
     "Salario": 250000,
-    "AñosExperiencia": 3,
-    "Provincia": "Buenos Aires",
-    "Ciudad": "San Nicolas",
-    "NivelEstudios": "Terciario",
-    "Fecha": "2023-04-22 08:05:20.4466304"
+    "ExperienciaId": 3,
+    "ProvinciaId": 6,
+    "CiudadId": 60091,
+    "NivelEstudioId": 3,
+    "Fecha": "2023-04-22 08:05:20.4466304",
+    "Status": "True"
   },
 
   {
@@ -85,11 +91,12 @@
     "Titulo": "Analista Funcional Jr o Ssr.",
     "Descripcion": "Desde Ecosistemas nos encontramos en la búsqueda de un Analista Funcional Jr/Ssr, para sumarse al equipo de nuestro cliente, empresa agropecuaria.",
     "Salario": 200000,
-    "AñosExperiencia": 2,
-    "Provincia": "Buenos Aires",
-    "Ciudad": "Carlos Casares",
-    "NivelEstudios": "Terciario",
-    "Fecha": "2023-04-22 07:50:18.9890830"
+    "ExperienciaId": 2,
+    "ProvinciaId": 6,
+    "CiudadId": 60147,
+    "NivelEstudioId": 3,
+    "Fecha": "2023-04-22 07:50:18.9890830",
+    "Status": "True"
   },
 
   {
@@ -98,11 +105,12 @@
     "Titulo": "Programador Robotista.",
     "Descripcion": "Importante empresa Autopartista se encuentra en la búsqueda de Programador Robotista.",
     "Salario": 200000,
-    "AñosExperiencia": 2,
-    "Provincia": "Buenos Aires",
-    "Ciudad": "Retiro",
-    "NivelEstudios": "Universitario",
-    "Fecha": "2023-04-22 10:27:32.8956499"
+    "ExperienciaId": 2,
+    "ProvinciaId": 6,
+    "CiudadId": 60091,
+    "NivelEstudioId": 4,
+    "Fecha": "2023-04-22 10:27:32.8956499",
+    "Status": "True"
   },
   {
     "OfertaId": "3B4010D9-E137-465D-9A4B-D97B28B87BBE",
@@ -110,11 +118,12 @@
     "Titulo": "Administrador/ Contador.",
     "Descripcion": "Estamos en la búsqueda de Responsable general para empresa con negocios en rubro inmobiliario y de playas de estacionamiento.",
     "Salario": 200000,
-    "AñosExperiencia": 3,
-    "Provincia": "Buenos Aires",
-    "Ciudad": "Palermo",
-    "NivelEstudios": "Posgrado",
-    "Fecha": "2023-04-23 10:27:32.8956499"
+    "ExperienciaId": 3,
+    "ProvinciaId": 6,
+    "CiudadId": 60441,
+    "NivelEstudioId": 5,
+    "Fecha": "2023-04-23 10:27:32.8956499",
+    "Status": "True"
   }
 
 

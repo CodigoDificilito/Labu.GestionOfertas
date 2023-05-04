@@ -1,5 +1,4 @@
-﻿using Application.DTO;
-using Application.DTO.Response;
+﻿using Application.DTO.Response;
 using Application.Interfaces.IOferta;
 
 namespace Application.UseCase.Services.SOferta
@@ -13,83 +12,86 @@ namespace Application.UseCase.Services.SOferta
             _query = query;
         }
 
-        public async Task<ResponseMessage> GetListOfertaByTitulo(string titulo)
-        {
-            var ofertas = await _query.GetListOfertaByTitulo(titulo);
-            var ofertasDTO = new List<OfertaDTO>();
-
-            if (ofertas.Count==0)
-            {
-                return new ResponseMessage(204, new { result = "No existen ofertas con el titulo ingresado." });
-            }
-
-            foreach (var c in ofertas)
-            {
-                var ofertaDTO = new OfertaDTO()
-                {
-                    EmpresaId = c.EmpresaId,
-                    Titulo = c.Titulo,
-                    Descripcion = c.Descripcion,
-                    Salario = c.Salario,
-                    AñosExperiencia = c.AñosExperiencia,
-                    Provincia = c.Provincia,
-                    Ciudad = c.Ciudad,
-                    NivelEstudios = c.NivelEstudios
-                };
-                ofertasDTO.Add(ofertaDTO);
-            }
-
-            return new ResponseMessage(200, ofertasDTO);
-        }
-        public async Task<ResponseMessage> GetOfertaById(Guid ofertaId)
+        public async Task<OfertaResponse> GetOfertaById(Guid ofertaId)
         {
             var oferta = await _query.GetOferta(ofertaId);
 
             if (oferta==null)
             {
-                return new ResponseMessage(404, new { request = "Oferta no encontrada." });
+                return null;
             }
 
-            return new ResponseMessage(200, new OfertaDTO()
+            var categorias = new List<OfertaCategoriaResponse>();
+
+            foreach (var item in oferta.OfertaCategoria)
             {
+                categorias.Add(new OfertaCategoriaResponse
+                {
+                    CategoriaId = item.Categoria.CategoriaId,
+                    Nombre = item.Categoria.Descripcion
+                });
+            }
+
+            return new OfertaResponse
+            {
+                OfertaId = oferta.OfertaId,
                 EmpresaId = oferta.EmpresaId,
                 Titulo = oferta.Titulo,
                 Descripcion = oferta.Descripcion,
                 Salario = oferta.Salario,
-                AñosExperiencia = oferta.AñosExperiencia,
-                Provincia = oferta.Provincia,
-                Ciudad = oferta.Ciudad,
-                NivelEstudios = oferta.NivelEstudios
-            });
+                Experiencia = new ExperienciaResponse
+                {
+                    Id = oferta.Experiencia.ExperienciaId,
+                    Nombre = oferta.Experiencia.Nombre
+                },
+                ProvinciaId = oferta.ProvinciaId,
+                CiudadId = oferta.CuidadId,
+                NivelEstudio = new NivelEstudioResponse
+                {
+                    Id = oferta.NivelEstudio.NivelEstudioId,
+                    Nombre = oferta.NivelEstudio.Nombre
+                },
+                Fecha = oferta.Fecha.ToString(),
+                Categorias = categorias
+            };
         }
 
-        public async Task<ResponseMessage> GetListOfertaByEmpresaId(int empresaId)
+        public async Task<IList<OfertaResponse>> GetListOfertaByQuerys(string? descripcion, int? empresa, int? provincia, int page, string fecha)
         {
-            var ofertas = await _query.GetListOfertaByEmpresa(empresaId);
-            var ofertasDTO = new List<OfertaDTO>();
+            var ofertas = await _query.GetListOfertaByFilters(descripcion, empresa, provincia, page, fecha);
+            var ofertasResponse = new List<OfertaResponse>();
 
-            if (ofertas.Count==0)
+            foreach (var oferta in ofertas)
             {
-                return new ResponseMessage(204, new { result = "La Empresa con el ID ingresado no tiene Ofertas." });
-            }
-
-            foreach (var c in ofertas)
-            {
-                var ofertaDTO = new OfertaDTO()
+                ofertasResponse.Add(new OfertaResponse
                 {
-                    EmpresaId = c.EmpresaId,
-                    Titulo = c.Titulo,
-                    Descripcion = c.Descripcion,
-                    Salario = c.Salario,
-                    AñosExperiencia = c.AñosExperiencia,
-                    Provincia = c.Provincia,
-                    Ciudad = c.Ciudad,
-                    NivelEstudios = c.NivelEstudios
-                };
-                ofertasDTO.Add(ofertaDTO);
+                    OfertaId = oferta.OfertaId,
+                    EmpresaId = oferta.EmpresaId,
+                    Titulo = oferta.Titulo,
+                    Descripcion = oferta.Descripcion,
+                    Salario = oferta.Salario,
+                    Experiencia = new ExperienciaResponse
+                    {
+                        Id = oferta.Experiencia.ExperienciaId,
+                        Nombre = oferta.Experiencia.Nombre
+                    },
+                    ProvinciaId = oferta.ProvinciaId,
+                    CiudadId = oferta.CuidadId,
+                    NivelEstudio = new NivelEstudioResponse
+                    {
+                        Id = oferta.NivelEstudio.NivelEstudioId,
+                        Nombre = oferta.NivelEstudio.Nombre
+                    },
+                    Fecha = oferta.Fecha.ToString(),
+                    Categorias = oferta.OfertaCategoria.Select(oc => new OfertaCategoriaResponse
+                    {
+                        CategoriaId = oc.Categoria.CategoriaId,
+                        Nombre = oc.Categoria.Descripcion
+                    }).ToList()
+                });
             }
 
-            return new ResponseMessage(200, ofertasDTO);
+            return ofertasResponse;
         }
     }
 }
