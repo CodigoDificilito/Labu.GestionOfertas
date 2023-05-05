@@ -1,5 +1,5 @@
-﻿using Application.Interfaces.IOferta;
-using Microsoft.AspNetCore.Http;
+﻿using Application.DTO.Response;
+using Application.Interfaces.IOferta;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Labu.Controllers
@@ -15,21 +15,34 @@ namespace Labu.Controllers
             _queryServices = queryServices;
         }
 
-        [HttpGet("{categoriaId}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetCategoriaById(int categoriaId)
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(CategoriaResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BadRequest), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(BadRequest), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetCategoriaById(int id)
         {
-            var result = await _queryServices.GetCategoriaById(categoriaId);
-            return StatusCode(result.code, result.result);
+            if (!ModelState.IsValid)
+            {
+                return new JsonResult(new BadRequest { message = "Verifique el ID ingresado." }) { StatusCode = 400 };
+            }
+
+            var result = await _queryServices.GetCategoriaById(id);
+
+            if (result == null)
+            {
+                return new JsonResult(new BadRequest { message = "Categoria no encontrada." }) { StatusCode = 404 };
+            }
+            
+            return new JsonResult(result){ StatusCode = 200};
         }
 
 
-        [HttpGet("Todas/")]
+        [HttpGet]
+        [ProducesResponseType(typeof(IList<CategoriaResponse>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllCategorias()
         {
             var result = await _queryServices.GetOfertas();
-            return new JsonResult(result);
+            return new JsonResult(result) { StatusCode = 200};
         }
     }
 }

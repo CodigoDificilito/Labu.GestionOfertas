@@ -1,17 +1,11 @@
-﻿using Application.DTO;
-using Application.DTO.Response;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Application.DTO.Response;
 
 namespace Application.Interfaces.ITipoEstadoPostulacion
 {
     public interface ITipoEstadoPostulacionQueryServices
     {
-        Task<List<TipoEstadoPostulacionDTO>> GetTiposEstadoPogstulacion();
+        Task<IList<TipoEstadoPostulacionResponse>> GetTiposEstadoPogstulacion();
 
-        Task<ResponseMessage> GetTipoEstadoPostulacionById(int id);
+        Task<TipoEstadoPostulacionResponse> GetTipoEstadoPostulacionById(int id);
     }
 }

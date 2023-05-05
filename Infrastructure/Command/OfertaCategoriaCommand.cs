@@ -1,11 +1,7 @@
 ﻿using Application.Interfaces.IOfertaCategoria;
 using Domain.Entities;
 using Infrastructure.Persistance;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Command
 {
@@ -18,10 +14,15 @@ namespace Infrastructure.Command
             _context = context;
         }
 
-        public async Task InsertOfertaCategoria(OfertaCategoria ofertaCategoria)
+        public async Task<Categoria> InsertOfertaCategoria(OfertaCategoria ofertaCategoria)
         {
             await _context.AddAsync(ofertaCategoria);
             await _context.SaveChangesAsync();
+
+            var categoria = await _context.Categoria
+                .FirstOrDefaultAsync(ci => ci.CategoriaId == ofertaCategoria.CategoriaId);
+
+            return categoria;
         }
 
         public async Task<bool> RemoveOfertaCategoria(Guid ofertaId, int categoriaId)
@@ -32,7 +33,8 @@ namespace Infrastructure.Command
             {
                 return false;
             }
-            _context.Remove(ofertaCategoria);
+
+            ofertaCategoria.Status = false;
 
             await _context.SaveChangesAsync();
 

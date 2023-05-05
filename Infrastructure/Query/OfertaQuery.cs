@@ -14,26 +14,55 @@ namespace Infrastructure.Query
             _context = context;
         }
 
-        public Task<List<Oferta>> GetListOfertaByEmpresa(int id)
+        public async Task<IList<Oferta>> GetListOfertaByFilters(string? descripcion, int? empresa, int? provincia, int page, string orden)
         {
-            var ofertas = _context.Oferta.Where(o => o.EmpresaId == id)
-               .ToListAsync();
+            var ofertas = _context.Oferta
+                .Include(o => o.Experiencia)
+                .Include(o => o.NivelEstudio)
+                .Include(o => o.OfertaCategoria)
+                .ThenInclude(oc => oc.Categoria)
+                .AsQueryable();
 
-            return ofertas;
-        }
+            if (!string.IsNullOrEmpty(descripcion))
+            {
+                ofertas = ofertas.Where(o => o.Titulo.Contains(descripcion) || o.Descripcion.Contains(descripcion));
+            }
 
-        public async Task<List<Oferta>> GetListOfertaByTitulo(string titulo)
-        {
-            var ofertas = await _context.Oferta
-                .Where(o => o.Titulo.Contains(titulo))
+            if (empresa.HasValue)
+            {
+                ofertas = ofertas.Where(o => o.EmpresaId == empresa);
+            }
+
+            if (provincia.HasValue)
+            {
+                ofertas = ofertas.Where(o => o.ProvinciaId == provincia);
+            }
+
+            switch (orden.ToUpper())
+            {
+                case "ASC":
+                    ofertas = ofertas.OrderBy(o => o.Fecha);
+                    break;
+                case "DESC":
+                    ofertas = ofertas.OrderByDescending(o => o.Fecha);
+                    break;
+            }
+
+            return await ofertas
+                .Skip((page - 1) * 10)
+                .Take(10)
+                .Where(o => o.Status == true)
                 .ToListAsync();
-
-            return ofertas;
         }
 
         public async Task<Oferta> GetOferta(Guid ofertaId)
         {
-            var oferta = await _context.Oferta.FindAsync(ofertaId);
+            var oferta = await _context.Oferta
+                .Include(e => e.Experiencia)
+                .Include(ne => ne.NivelEstudio)
+                .Include(oc => oc.OfertaCategoria)
+                .ThenInclude(c => c.Categoria)
+                .FirstOrDefaultAsync(o => o.OfertaId == ofertaId && o.Status == true);
 
             return oferta;
         }

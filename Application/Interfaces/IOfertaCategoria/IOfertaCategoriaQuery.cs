@@ -1,9 +1,7 @@
-﻿using Domain.Entities;
-
-namespace Application.Interfaces.IOfertaCategoria
+﻿namespace Application.Interfaces.IOfertaCategoria
 {
     public interface IOfertaCategoriaQuery
     {
-        Task<List<OfertaCategoria>> GetListOfertaCategoriaByOfertaId(Guid ofertaId);
+        Task<bool> ExistOfertaCategoriaByOfertaId(Guid ofertaId, IList<int> lista);
     }
 }

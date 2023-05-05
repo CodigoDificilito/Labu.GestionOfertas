@@ -5,7 +5,7 @@ namespace Application.Interfaces.IOfertaCategoria
 {
     public interface IOfertaCategoriaCommandServices
     {
-        public Task<ResponseMessage> CreateOfertaCategoria(AddOfertaCategoriaRequest dto);
-        public Task<ResponseMessage> DeleteOfertaCategoria(Guid ofertaId, int categoriaId);
+        public Task<IList<OfertaCategoriaResponse>> CreateOfertaCategoria(OfertaCategoriaRequest dto);
+        public Task<bool> DeleteOfertaCategoria(Guid ofertaId, IList<int> categorias);
     }
 }

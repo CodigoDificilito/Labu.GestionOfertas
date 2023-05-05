@@ -1,11 +1,10 @@
-﻿using Application.DTO;
-using Domain.Entities;
+﻿using Domain.Entities;
 
 namespace Application.Interfaces.ICategoria
 {
     public interface ICategoriaQuery
     {
-        Task<List<Categoria>> GetListCategoria();
+        Task<IList<Categoria>> GetListCategoria();
         Task<Categoria> GetCategoria(int categoriaId);
     }
 }

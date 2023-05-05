@@ -4,8 +4,8 @@ namespace Application.Interfaces.IOferta
 {
     public interface IOfertaQueryServices
     {
-        Task<ResponseMessage> GetListOfertaByTitulo(string titulo);
-        Task<ResponseMessage> GetListOfertaByEmpresaId(int empresaId);
-        Task<ResponseMessage> GetOfertaById(Guid ofertaId);
+        Task<OfertaResponse> GetOfertaById(Guid ofertaId);
+
+        Task<IList<OfertaResponse>> GetListOfertaByQuerys(string? descripcion, int? empresa, int? provincia, int page, string fecha);
     }
 }

@@ -1,9 +1,7 @@
-﻿using Application.DTO.Response;
-
-namespace Application.Interfaces.IOfertaCategoria
+﻿namespace Application.Interfaces.IOfertaCategoria
 {
     public interface IOfertaCategoriaQueryServices
     {
-        Task<ResponseMessage> GetListOfertaCategoriaByOfertaId(Guid ofertaId);
+        Task<bool> OfertaCategoriaExistInOfertaId(Guid ofertaId, IList<int> lista);
     }
 }

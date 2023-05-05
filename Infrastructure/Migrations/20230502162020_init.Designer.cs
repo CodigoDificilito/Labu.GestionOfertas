@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230423143414_init")]
+    [Migration("20230502162020_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -210,19 +210,139 @@ namespace Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Domain.Entities.Experiencia", b =>
+                {
+                    b.Property<int>("ExperienciaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ExperienciaId"));
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ExperienciaId");
+
+                    b.ToTable("Experiencia", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ExperienciaId = 1,
+                            Nombre = "Sin Experiencia"
+                        },
+                        new
+                        {
+                            ExperienciaId = 2,
+                            Nombre = "1 Año"
+                        },
+                        new
+                        {
+                            ExperienciaId = 3,
+                            Nombre = "2 Años"
+                        },
+                        new
+                        {
+                            ExperienciaId = 4,
+                            Nombre = "3 Años"
+                        },
+                        new
+                        {
+                            ExperienciaId = 5,
+                            Nombre = "4 Años"
+                        },
+                        new
+                        {
+                            ExperienciaId = 6,
+                            Nombre = "5 Años"
+                        },
+                        new
+                        {
+                            ExperienciaId = 7,
+                            Nombre = "6 Años"
+                        },
+                        new
+                        {
+                            ExperienciaId = 8,
+                            Nombre = "7 Años"
+                        },
+                        new
+                        {
+                            ExperienciaId = 9,
+                            Nombre = "8 Años"
+                        });
+                });
+
+            modelBuilder.Entity("Domain.Entities.NivelEstudio", b =>
+                {
+                    b.Property<int>("NivelEstudioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NivelEstudioId"));
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("NivelEstudioId");
+
+                    b.ToTable("NivelEstudios", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            NivelEstudioId = 1,
+                            Nombre = "Primaria"
+                        },
+                        new
+                        {
+                            NivelEstudioId = 2,
+                            Nombre = "Secundaria"
+                        },
+                        new
+                        {
+                            NivelEstudioId = 3,
+                            Nombre = "Terciario"
+                        },
+                        new
+                        {
+                            NivelEstudioId = 4,
+                            Nombre = "Universitario"
+                        },
+                        new
+                        {
+                            NivelEstudioId = 5,
+                            Nombre = "Posgrado"
+                        },
+                        new
+                        {
+                            NivelEstudioId = 6,
+                            Nombre = "Master"
+                        },
+                        new
+                        {
+                            NivelEstudioId = 7,
+                            Nombre = "Doctorado"
+                        },
+                        new
+                        {
+                            NivelEstudioId = 8,
+                            Nombre = "Sin estudios"
+                        });
+                });
+
             modelBuilder.Entity("Domain.Entities.Oferta", b =>
                 {
                     b.Property<Guid>("OfertaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("AñosExperiencia")
+                    b.Property<int>("CuidadId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Ciudad")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
@@ -232,21 +352,23 @@ namespace Infrastructure.Migrations
                     b.Property<int>("EmpresaId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ExperienciaId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("NivelEstudios")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<int>("NivelEstudioId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Provincia")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<int>("ProvinciaId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Salario")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Titulo")
                         .IsRequired()
@@ -255,124 +377,137 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("OfertaId");
 
+                    b.HasIndex("ExperienciaId");
+
+                    b.HasIndex("NivelEstudioId");
+
                     b.ToTable("Oferta", (string)null);
 
                     b.HasData(
                         new
                         {
                             OfertaId = new Guid("e058b366-f832-42dd-b001-647919fdfd66"),
-                            AñosExperiencia = 3,
-                            Ciudad = "Retiro",
+                            CuidadId = 0,
                             Descripcion = "Buscamos Desarrollador .NET Junior/Ssr. para sumarse a importante empresa de producto IT, líder en la creación de soluciones para el sector de salud.",
                             EmpresaId = 1,
+                            ExperienciaId = 3,
                             Fecha = new DateTime(2023, 4, 22, 8, 5, 19, 374, DateTimeKind.Unspecified).AddTicks(9336),
-                            NivelEstudios = "Universitario",
-                            Provincia = "Buenos Aires",
+                            NivelEstudioId = 4,
+                            ProvinciaId = 6,
                             Salario = 200000,
+                            Status = true,
                             Titulo = "Desarrollador .NET Junior/Ssr."
                         },
                         new
                         {
                             OfertaId = new Guid("f1b4f44e-05fb-4062-a247-6830964ef063"),
-                            AñosExperiencia = 1,
-                            Ciudad = "Quilmes",
+                            CuidadId = 0,
                             Descripcion = "Buscamos Desarrollador .NET Junior/Ssr. para sumarse a importante empresa de producto IT, líder en la creación de soluciones para el sector de salud.",
                             EmpresaId = 2,
+                            ExperienciaId = 1,
                             Fecha = new DateTime(2023, 3, 22, 8, 4, 50, 928, DateTimeKind.Unspecified).AddTicks(6762),
-                            NivelEstudios = "Terciario",
-                            Provincia = "Buenos Aires",
+                            NivelEstudioId = 3,
+                            ProvinciaId = 6,
                             Salario = 120000,
+                            Status = true,
                             Titulo = "Desarrollador .NET Junior."
                         },
                         new
                         {
                             OfertaId = new Guid("ee69bf0e-735f-44ff-9712-96830fddbf3a"),
-                            AñosExperiencia = 1,
-                            Ciudad = "Moreno",
+                            CuidadId = 0,
                             Descripcion = "Buscamos AUXLIAR DE OPERACIONES SISTEMAS.",
                             EmpresaId = 2,
+                            ExperienciaId = 1,
                             Fecha = new DateTime(2023, 4, 23, 8, 5, 19, 374, DateTimeKind.Unspecified).AddTicks(9336),
-                            NivelEstudios = "Universitario",
-                            Provincia = "Buenos Aires",
+                            NivelEstudioId = 4,
+                            ProvinciaId = 6,
                             Salario = 150000,
+                            Status = true,
                             Titulo = "Analista programador/a de sistemas."
                         },
                         new
                         {
                             OfertaId = new Guid("3da7995a-715f-40b8-8121-b2ffdee778b0"),
-                            AñosExperiencia = 3,
-                            Ciudad = "Florencion Varela",
-                            Descripcion = "uscamos Desarrollador SQL Server Junior/SSR. para sumarse a importante empresa de producto IT, líder en la creación de soluciones para el sector de salud.",
+                            CuidadId = 0,
+                            Descripcion = "Buscamos Desarrollador SQL Server Junior/SSR. para sumarse a importante empresa de producto IT, líder en la creación de soluciones para el sector de salud.",
                             EmpresaId = 2,
+                            ExperienciaId = 3,
                             Fecha = new DateTime(2023, 5, 22, 12, 13, 20, 71, DateTimeKind.Unspecified).AddTicks(9537),
-                            NivelEstudios = "Universitario",
-                            Provincia = "Buenos Aires",
+                            NivelEstudioId = 4,
+                            ProvinciaId = 6,
                             Salario = 220000,
+                            Status = true,
                             Titulo = "Desarrollador SQL Server Jr/SSr"
                         },
                         new
                         {
                             OfertaId = new Guid("994ec6d1-3560-4fc6-be23-e078def32527"),
-                            AñosExperiencia = 1,
-                            Ciudad = "Retiro",
+                            CuidadId = 0,
                             Descripcion = "En Ecosistemas, buscamos un Desarrollador Java Jr/Ssr para sumar al equipo de nuestro cliente, en relación directa con el mismo.",
                             EmpresaId = 3,
+                            ExperienciaId = 1,
                             Fecha = new DateTime(2023, 3, 22, 12, 11, 59, 975, DateTimeKind.Unspecified).AddTicks(193),
-                            NivelEstudios = "Secundario",
-                            Provincia = "Buenos Aires",
+                            NivelEstudioId = 2,
+                            ProvinciaId = 6,
                             Salario = 180000,
+                            Status = true,
                             Titulo = "Desarrollador Java Jr."
                         },
                         new
                         {
                             OfertaId = new Guid("4093643c-135b-4368-ace5-e1783dd3f0f8"),
-                            AñosExperiencia = 3,
-                            Ciudad = "San Nicolas",
+                            CuidadId = 0,
                             Descripcion = "En Ecosistemas estamos en la búsqueda de un Administrador de Backups Ssr/Sr para sumarse a nuestro equipo",
                             EmpresaId = 3,
+                            ExperienciaId = 3,
                             Fecha = new DateTime(2023, 4, 22, 8, 5, 20, 446, DateTimeKind.Unspecified).AddTicks(6304),
-                            NivelEstudios = "Terciario",
-                            Provincia = "Buenos Aires",
+                            NivelEstudioId = 3,
+                            ProvinciaId = 6,
                             Salario = 250000,
+                            Status = true,
                             Titulo = "Administrador de Infraestructura Ssr."
                         },
                         new
                         {
                             OfertaId = new Guid("8a527fd3-962a-4abf-b18f-efcdb6004f07"),
-                            AñosExperiencia = 2,
-                            Ciudad = "Carlos Casares",
+                            CuidadId = 0,
                             Descripcion = "Desde Ecosistemas nos encontramos en la búsqueda de un Analista Funcional Jr/Ssr, para sumarse al equipo de nuestro cliente, empresa agropecuaria.",
                             EmpresaId = 3,
+                            ExperienciaId = 2,
                             Fecha = new DateTime(2023, 4, 22, 7, 50, 18, 989, DateTimeKind.Unspecified).AddTicks(830),
-                            NivelEstudios = "Terciario",
-                            Provincia = "Buenos Aires",
+                            NivelEstudioId = 3,
+                            ProvinciaId = 6,
                             Salario = 200000,
+                            Status = true,
                             Titulo = "Analista Funcional Jr o Ssr."
                         },
                         new
                         {
                             OfertaId = new Guid("1d394678-e0eb-4620-a1de-f01c7768ddb3"),
-                            AñosExperiencia = 2,
-                            Ciudad = "Retiro",
+                            CuidadId = 0,
                             Descripcion = "Importante empresa Autopartista se encuentra en la búsqueda de Programador Robotista.",
                             EmpresaId = 1,
+                            ExperienciaId = 2,
                             Fecha = new DateTime(2023, 4, 22, 10, 27, 32, 895, DateTimeKind.Unspecified).AddTicks(6499),
-                            NivelEstudios = "Universitario",
-                            Provincia = "Buenos Aires",
+                            NivelEstudioId = 4,
+                            ProvinciaId = 6,
                             Salario = 200000,
+                            Status = true,
                             Titulo = "Programador Robotista."
                         },
                         new
                         {
                             OfertaId = new Guid("3b4010d9-e137-465d-9a4b-d97b28b87bbe"),
-                            AñosExperiencia = 3,
-                            Ciudad = "Palermo",
+                            CuidadId = 0,
                             Descripcion = "Estamos en la búsqueda de Responsable general para empresa con negocios en rubro inmobiliario y de playas de estacionamiento.",
                             EmpresaId = 4,
+                            ExperienciaId = 3,
                             Fecha = new DateTime(2023, 4, 23, 10, 27, 32, 895, DateTimeKind.Unspecified).AddTicks(6499),
-                            NivelEstudios = "Posgrado",
-                            Provincia = "Buenos Aires",
+                            NivelEstudioId = 5,
+                            ProvinciaId = 6,
                             Salario = 200000,
+                            Status = true,
                             Titulo = "Administrador/ Contador."
                         });
                 });
@@ -391,6 +526,9 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("OfertaId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.HasKey("OfertaCategoriaId");
 
                     b.HasIndex("CategoriaId");
@@ -404,151 +542,176 @@ namespace Infrastructure.Migrations
                         {
                             OfertaCategoriaId = 1,
                             CategoriaId = 1,
-                            OfertaId = new Guid("e058b366-f832-42dd-b001-647919fdfd66")
+                            OfertaId = new Guid("e058b366-f832-42dd-b001-647919fdfd66"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 2,
                             CategoriaId = 3,
-                            OfertaId = new Guid("e058b366-f832-42dd-b001-647919fdfd66")
+                            OfertaId = new Guid("e058b366-f832-42dd-b001-647919fdfd66"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 3,
                             CategoriaId = 1,
-                            OfertaId = new Guid("f1b4f44e-05fb-4062-a247-6830964ef063")
+                            OfertaId = new Guid("f1b4f44e-05fb-4062-a247-6830964ef063"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 4,
                             CategoriaId = 3,
-                            OfertaId = new Guid("f1b4f44e-05fb-4062-a247-6830964ef063")
+                            OfertaId = new Guid("f1b4f44e-05fb-4062-a247-6830964ef063"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 5,
                             CategoriaId = 1,
-                            OfertaId = new Guid("ee69bf0e-735f-44ff-9712-96830fddbf3a")
+                            OfertaId = new Guid("ee69bf0e-735f-44ff-9712-96830fddbf3a"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 6,
                             CategoriaId = 25,
-                            OfertaId = new Guid("ee69bf0e-735f-44ff-9712-96830fddbf3a")
+                            OfertaId = new Guid("ee69bf0e-735f-44ff-9712-96830fddbf3a"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 7,
                             CategoriaId = 33,
-                            OfertaId = new Guid("e058b366-f832-42dd-b001-647919fdfd66")
+                            OfertaId = new Guid("e058b366-f832-42dd-b001-647919fdfd66"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 8,
                             CategoriaId = 25,
-                            OfertaId = new Guid("3da7995a-715f-40b8-8121-b2ffdee778b0")
+                            OfertaId = new Guid("3da7995a-715f-40b8-8121-b2ffdee778b0"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 9,
                             CategoriaId = 33,
-                            OfertaId = new Guid("3da7995a-715f-40b8-8121-b2ffdee778b0")
+                            OfertaId = new Guid("3da7995a-715f-40b8-8121-b2ffdee778b0"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 10,
                             CategoriaId = 23,
-                            OfertaId = new Guid("994ec6d1-3560-4fc6-be23-e078def32527")
+                            OfertaId = new Guid("994ec6d1-3560-4fc6-be23-e078def32527"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 11,
                             CategoriaId = 25,
-                            OfertaId = new Guid("994ec6d1-3560-4fc6-be23-e078def32527")
+                            OfertaId = new Guid("994ec6d1-3560-4fc6-be23-e078def32527"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 12,
                             CategoriaId = 33,
-                            OfertaId = new Guid("994ec6d1-3560-4fc6-be23-e078def32527")
+                            OfertaId = new Guid("994ec6d1-3560-4fc6-be23-e078def32527"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 13,
                             CategoriaId = 4,
-                            OfertaId = new Guid("4093643c-135b-4368-ace5-e1783dd3f0f8")
+                            OfertaId = new Guid("4093643c-135b-4368-ace5-e1783dd3f0f8"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 14,
                             CategoriaId = 18,
-                            OfertaId = new Guid("4093643c-135b-4368-ace5-e1783dd3f0f8")
+                            OfertaId = new Guid("4093643c-135b-4368-ace5-e1783dd3f0f8"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 15,
                             CategoriaId = 23,
-                            OfertaId = new Guid("4093643c-135b-4368-ace5-e1783dd3f0f8")
+                            OfertaId = new Guid("4093643c-135b-4368-ace5-e1783dd3f0f8"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 16,
                             CategoriaId = 25,
-                            OfertaId = new Guid("4093643c-135b-4368-ace5-e1783dd3f0f8")
+                            OfertaId = new Guid("4093643c-135b-4368-ace5-e1783dd3f0f8"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 17,
                             CategoriaId = 31,
-                            OfertaId = new Guid("4093643c-135b-4368-ace5-e1783dd3f0f8")
+                            OfertaId = new Guid("4093643c-135b-4368-ace5-e1783dd3f0f8"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 18,
                             CategoriaId = 1,
-                            OfertaId = new Guid("8a527fd3-962a-4abf-b18f-efcdb6004f07")
+                            OfertaId = new Guid("8a527fd3-962a-4abf-b18f-efcdb6004f07"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 19,
                             CategoriaId = 4,
-                            OfertaId = new Guid("8a527fd3-962a-4abf-b18f-efcdb6004f07")
+                            OfertaId = new Guid("8a527fd3-962a-4abf-b18f-efcdb6004f07"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 20,
                             CategoriaId = 25,
-                            OfertaId = new Guid("8a527fd3-962a-4abf-b18f-efcdb6004f07")
+                            OfertaId = new Guid("8a527fd3-962a-4abf-b18f-efcdb6004f07"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 21,
                             CategoriaId = 18,
-                            OfertaId = new Guid("1d394678-e0eb-4620-a1de-f01c7768ddb3")
+                            OfertaId = new Guid("1d394678-e0eb-4620-a1de-f01c7768ddb3"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 22,
                             CategoriaId = 19,
-                            OfertaId = new Guid("1d394678-e0eb-4620-a1de-f01c7768ddb3")
+                            OfertaId = new Guid("1d394678-e0eb-4620-a1de-f01c7768ddb3"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 23,
                             CategoriaId = 4,
-                            OfertaId = new Guid("3b4010d9-e137-465d-9a4b-d97b28b87bbe")
+                            OfertaId = new Guid("3b4010d9-e137-465d-9a4b-d97b28b87bbe"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 24,
                             CategoriaId = 5,
-                            OfertaId = new Guid("3b4010d9-e137-465d-9a4b-d97b28b87bbe")
+                            OfertaId = new Guid("3b4010d9-e137-465d-9a4b-d97b28b87bbe"),
+                            Status = true
                         },
                         new
                         {
                             OfertaCategoriaId = 25,
                             CategoriaId = 24,
-                            OfertaId = new Guid("3b4010d9-e137-465d-9a4b-d97b28b87bbe")
+                            OfertaId = new Guid("3b4010d9-e137-465d-9a4b-d97b28b87bbe"),
+                            Status = true
                         });
                 });
 
@@ -568,6 +731,9 @@ namespace Infrastructure.Migrations
 
                     b.Property<Guid>("OfertaId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
 
                     b.Property<int>("TipoEstadoPostulacionId")
                         .HasColumnType("int");
@@ -619,7 +785,31 @@ namespace Infrastructure.Migrations
                         {
                             TipoEstadoPostulacionId = 4,
                             Descripcion = "Finalista"
+                        },
+                        new
+                        {
+                            TipoEstadoPostulacionId = 5,
+                            Descripcion = "Proceso finalizado"
                         });
+                });
+
+            modelBuilder.Entity("Domain.Entities.Oferta", b =>
+                {
+                    b.HasOne("Domain.Entities.Experiencia", "Experiencia")
+                        .WithMany("Oferta")
+                        .HasForeignKey("ExperienciaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.NivelEstudio", "NivelEstudio")
+                        .WithMany("Oferta")
+                        .HasForeignKey("NivelEstudioId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Experiencia");
+
+                    b.Navigation("NivelEstudio");
                 });
 
             modelBuilder.Entity("Domain.Entities.OfertaCategoria", b =>
@@ -627,13 +817,13 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.Categoria", "Categoria")
                         .WithMany("OfertaCategoria")
                         .HasForeignKey("CategoriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Oferta", "Oferta")
                         .WithMany("OfertaCategoria")
                         .HasForeignKey("OfertaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Categoria");
@@ -646,7 +836,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.Oferta", "Oferta")
                         .WithMany("Postulacion")
                         .HasForeignKey("OfertaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.TipoEstadoPostulacion", "TipoEstadoPostulacion")
@@ -663,6 +853,16 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Categoria", b =>
                 {
                     b.Navigation("OfertaCategoria");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Experiencia", b =>
+                {
+                    b.Navigation("Oferta");
+                });
+
+            modelBuilder.Entity("Domain.Entities.NivelEstudio", b =>
+                {
+                    b.Navigation("Oferta");
                 });
 
             modelBuilder.Entity("Domain.Entities.Oferta", b =>

@@ -1,12 +1,6 @@
-﻿using Application.DTO;
-using Application.DTO.Response;
+﻿using Application.DTO.Response;
 using Application.Interfaces.ICategoria;
 using Application.Interfaces.IOferta;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.UseCase.Services.SCategoria
 {
@@ -19,36 +13,50 @@ namespace Application.UseCase.Services.SCategoria
             _query = query;
         }
 
-        public async Task<ResponseMessage> GetCategoriaById(int categoriaId)
+        public async Task<bool> CategoriasExist(IList<int> categorias)
+        {
+            foreach (var id in categorias)
+            {
+                if (await _query.GetCategoria(id)==null)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public async Task<CategoriaResponse> GetCategoriaById(int categoriaId)
         {
             var categoria = await _query.GetCategoria(categoriaId);
 
-            if (categoria != null)
+            if (categoria == null)
             {
-                return new ResponseMessage(200, new CategoriaDTO()
-                {
-                    Descripcion = categoria.Descripcion
-                });
+                return null;
             }
 
-            return new ResponseMessage(404, new {result = "La categoria no fue encontrada o no existe."});
+            return new CategoriaResponse
+            {
+                Id = categoria.CategoriaId,
+                Descripcion = categoria.Descripcion
+            };
         }
 
-        public async Task<List<CategoriaDTO>> GetOfertas()
+        public async Task<IList<CategoriaResponse>> GetOfertas()
         {
             var categorias = await _query.GetListCategoria();
-            var categoriasDTO = new List<CategoriaDTO>();
+            var categoriasResponse = new List<CategoriaResponse>();
 
-            foreach (var c in categorias)
+            foreach (var item in categorias)
             {
-                var categoriaDTO = new CategoriaDTO()
+                categoriasResponse.Add(new CategoriaResponse()
                 {
-                    Descripcion = c.Descripcion
-                };
-                categoriasDTO.Add(categoriaDTO);
+                    Id = item.CategoriaId,
+                    Descripcion = item.Descripcion
+                });
+                
             }
 
-            return categoriasDTO;
+            return categoriasResponse;
         }
     }
 }

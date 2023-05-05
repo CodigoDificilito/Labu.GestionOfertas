@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Application.DTO.Response
+﻿namespace Application.DTO.Response
 {
     public class AddOfertaResponse
     {
@@ -13,10 +7,10 @@ namespace Application.DTO.Response
         public string Titulo { get; set; }
         public string Descripcion { get; set; }
         public int Salario { get; set; }
-        public int AñosExperiencia { get; set; }
-        public string Provincia { get; set; }
-        public string Ciudad { get; set; }
-        public string NivelEstudios { get; set; }
+        public int ExperineciaId { get; set; }
+        public int ProvinciaId { get; set; }
+        public int CiudadId { get; set; }
+        public int NivelEstudioId { get; set; }
         public DateTime Fecha { get; set; }
     }
 }
