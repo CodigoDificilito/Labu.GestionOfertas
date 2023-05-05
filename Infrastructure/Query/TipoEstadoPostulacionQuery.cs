@@ -14,7 +14,7 @@ namespace Infrastructure.Query
             _context = context;
         }
 
-        public async Task<List<TipoEstadoPostulacion>> GetListTipoEstadoPostulacion()
+        public async Task<IList<TipoEstadoPostulacion>> GetListTipoEstadoPostulacion()
         {
             var tiposEstadoPostulacion = await _context.TipoEstadoPostulacion.ToListAsync();
 
